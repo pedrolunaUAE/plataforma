@@ -1,0 +1,201 @@
+.custom-toolBar{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:1900;
+
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+    gap:6px;
+
+    width:auto;
+    height:auto;
+    padding:7px;
+
+    color:#356b7d;
+
+    background:rgba(255,255,255,0%);
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0%);
+    border-radius:50px;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,.12),
+        0 2px 6px rgba(0,0,0,.06);
+
+    box-sizing:border-box;
+}
+/*----------------------*/
+.toolBar-shadow{
+   -moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:         1px 1px 2px 0px #555;
+}
+
+.toolBar-shadow-inset{
+   -moz-box-shadow: inset 1px 1px 2px 0px #999;
+   -webkit-box-shadow: inset 1px 1px 2px 0px #999;
+   box-shadow: inset 1px 1px 2px 0px #999;
+}
+.toolBar-boxsize{
+   -moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:         1px 1px 2px 0px #555;
+   
+   /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555');
+}
+.toolBar-transition{
+    webkit-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -o-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -moz-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -ms-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -kthtml-transition: all 0.4s lcubic-bezier(0.52,0,0.48,1);
+    transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+}
+/*elements-------------------------*/
+.custom-toolBar-btn{
+    position:relative;
+    float:none;
+
+    width:34px;
+    min-width:34px;
+    height:34px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0;
+    padding:0;
+
+    color:#651f25;
+
+    background: rgba(255,255,255,0%);
+    background-image:none !important;
+
+    border:1px solid transparent;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    box-sizing:border-box;
+
+    transition:
+        background-color .18s ease,
+        border-color .18s ease,
+        color .18s ease,
+        transform .15s ease;
+}
+
+.custom-toolBar-btn:hover{
+    color:#c81a5d;
+    background:#edf5f7;
+    border-color:#b6cbd2;
+    transform:translateY(-1px);
+}
+
+.custom-toolBar-btn:active{
+    transform:translateY(0);
+    background:#e1eef2;
+}
+
+.custom-toolBar-btn:focus-visible{
+    outline:2px solid rgba(53,107,125,.38);
+    outline-offset:2px;
+}
+
+.custom-toolBar-btn span{
+    float:none;
+
+    width:100%;
+    height:100%;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background:none !important;
+    background-image:none !important;
+
+    font-size:0;
+}
+
+.custom-toolBar-btn span::before{
+    font-family:"Font Awesome 6 Free","Font Awesome 5 Free";
+    font-size:16px;
+    font-weight:900;
+    line-height:1;
+    color:currentColor;
+}
+
+.custom-toolBar-btn[idref="contact"] span::before{
+    content:"\f590";
+}
+
+.custom-toolBar-btn[idref="print"] span::before{
+    content:"\f02f";
+}
+
+.custom-toolBar-btn[idref="share"] span::before{
+    content:"\f1e0";
+}
+
+.custom-toolBar-btn[idref="download"] span::before{
+    content:"\f019";
+}
+
+.custom-toolBar-btn[idref="splitscreen"] span::before{
+    content:"\f009";
+}
+
+.custom-toolBar-btn[idref="contact"]:hover{
+    color:#23728d;
+}
+
+.custom-toolBar-btn[idref="print"]:hover{
+    color:#356b7d;
+}
+
+.custom-toolBar-btn[idref="share"]:hover{
+    color:#6750a4;
+}
+
+.custom-toolBar-btn[idref="download"]:hover{
+    color:#35764d;
+}
+
+.custom-toolBar-btn[idref="splitscreen"]:hover{
+    color:#c45a16;
+}
+
+.custom-toolBar div:first-of-type{
+    margin:0;
+}
+
+.toolBar-right-230{
+    right:230px;
+}
+
+@media (max-width:700px){
+    .custom-toolBar{
+        top:8px;
+        right:8px;
+        gap:4px;
+        padding:5px;
+    }
+
+    .custom-toolBar-btn{
+        width:32px;
+        min-width:32px;
+        height:32px;
+    }
+
+    .custom-toolBar-btn span::before{
+        font-size:14px;
+    }
+}

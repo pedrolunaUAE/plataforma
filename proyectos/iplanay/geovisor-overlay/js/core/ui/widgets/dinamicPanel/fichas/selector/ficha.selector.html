@@ -1,0 +1,36 @@
+<div class="dp-selector-ficha" data-selector-root>
+  <header class="dp-selector-hero">
+    <div class="dp-selector-icon" aria-hidden="true">
+      <i class="fa-solid fa-layer-group"></i>
+    </div>
+    <div class="dp-selector-heading">
+      <small>Información disponible</small>
+      <h2 data-selector-title>Área seleccionada</h2>
+      <p data-selector-subtitle>Seleccione la ficha que desea consultar</p>
+    </div>
+  </header>
+
+  <section class="dp-selector-context" aria-label="Objeto geográfico seleccionado">
+    <div>
+      <span>Nivel geográfico</span>
+      <strong data-selector-level>No disponible</strong>
+    </div>
+    <div>
+      <span>Clave geoestadística</span>
+      <strong data-selector-cvegeo>No disponible</strong>
+    </div>
+  </section>
+
+  <section class="dp-selector-options" aria-labelledby="dp-selector-question">
+    <h3 id="dp-selector-question">¿Qué información desea consultar?</h3>
+    <p>Las opciones mostradas corresponden a las fichas disponibles para el objeto seleccionado.</p>
+    <div class="dp-selector-list" data-selector-options></div>
+  </section>
+
+  <div class="dp-selector-empty" data-selector-empty hidden>
+    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+    <p>No hay fichas disponibles para este objeto geográfico.</p>
+  </div>
+
+  <div class="dp-selector-status" data-selector-status aria-live="polite"></div>
+</div>

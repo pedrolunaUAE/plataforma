@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Plataforma</title>
+  <style>
+    body { font-family: Segoe UI, sans-serif; margin: 3rem auto; max-width: 40rem; background: #fff; color: #222; }
+    h1 { font-size: 1.6rem; }
+    a { color: #6E1A1A; }
+    code { background: #f4f4f4; padding: 0.1rem 0.3rem; }
+  </style>
+</head>
+<body>
+  <h1>Servidor compartido</h1>
+  <p>El proxy es la unica entrada web. Cada proyecto sigue en su contenedor y en su carpeta.</p>
+  <ul>
+    <li><a href="http://localhost/ovie/">OVIE</a> <code>http://localhost/ovie/</code></li>
+    <li><a href="http://localhost/iplanay/">Cuadernillos IPLANAY</a> <code>http://localhost/iplanay/</code></li>
+    <li><a href="http://localhost/geovisor/">MxSIG Compostela</a> <code>http://localhost/geovisor/</code></li>
+    <li><a href="http://localhost/mdm-client/">MxSIG cliente base</a> <code>http://localhost/mdm-client/</code></li>
+    <li><a href="http://localhost/pgadmin/">pgAdmin</a> <code>http://localhost/pgadmin/</code></li>
+  </ul>
+  <p>La base de todos los proyectos es el Postgres de este mismo compose. OVIE usa la base <code>ovie</code>. MxSIG usa la base <code>compostela</code>. Los cuadernillos usan la base <code>iplanay</code>.</p>
+</body>
+</html>

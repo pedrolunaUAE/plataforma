@@ -1,0 +1,31 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Plataforma",
+      "Group": "Servers",
+      "Host": "plataforma-postgres",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres",
+      "SSLMode": "prefer"
+    },
+    "2": {
+      "Name": "Clase",
+      "Group": "Servers",
+      "Host": "plataforma-postgres",
+      "Port": 5432,
+      "MaintenanceDB": "base_fundamentos",
+      "Username": "postgres",
+      "SSLMode": "prefer"
+    },
+    "3": {
+      "Name": "OVIE",
+      "Group": "Servers",
+      "Host": "plataforma-postgres",
+      "Port": 5432,
+      "MaintenanceDB": "ovie",
+      "Username": "ovie",
+      "SSLMode": "prefer"
+    }
+  }
+}

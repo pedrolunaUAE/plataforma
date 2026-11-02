@@ -1,0 +1,52 @@
+/* Tooltip unico MxSIG */
+.ui-tooltip.ui-tooltip-mxsig {
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: max-content !important;
+  max-width: none !important;
+  padding: 7px 10px !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  background: #233746 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28) !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  z-index: 99999999 !important;
+}
+
+.ui-tooltip.ui-tooltip-mxsig .ui-tooltip-content {
+  position: static !important;
+  display: block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  text-indent: 0 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+.ui-tooltip.ui-tooltip-mxsig > .bottom,
+.ui-tooltip.ui-tooltip-mxsig > .top,
+.ui-tooltip.ui-tooltip-mxsig > .left,
+.ui-tooltip.ui-tooltip-mxsig > .right,
+.ui-tooltip.ui-tooltip-mxsig > .center,
+.ui-tooltip.ui-tooltip-mxsig::before,
+.ui-tooltip.ui-tooltip-mxsig::after,
+.ui-tooltip.ui-tooltip-mxsig .ui-tooltip-content::before,
+.ui-tooltip.ui-tooltip-mxsig .ui-tooltip-content::after {
+  display: none !important;
+  content: none !important;
+}

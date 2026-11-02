@@ -1,0 +1,260 @@
+/* Selector modular de fichas para dinamicPanel */
+.dinamicPanel-detail[data-panel-type="selector"] {
+  --sel-primary:#245a8d;
+  --sel-primary-dark:#173f68;
+  --sel-stat:#2368a2;
+  --sel-security:#8f1738;
+  --sel-work:#a96513;
+  --sel-text:#263746;
+  --sel-muted:#6b7a89;
+  --sel-line:#dbe5ee;
+  --sel-soft:#f4f8fb;
+}
+.dp-selector-ficha{width:100%;color:var(--sel-text);background:linear-gradient(180deg,#f9fbfd,#f1f5f8);padding-bottom:12px;box-sizing:border-box;font-family:inherit}
+.dp-selector-ficha *{box-sizing:border-box}
+.dp-selector-hero{display:flex;align-items:center;gap:12px;padding:16px 14px;color:#fff;background:linear-gradient(135deg,var(--sel-primary),var(--sel-primary-dark));position:relative;overflow:hidden}
+.dp-selector-hero:after{content:"";position:absolute;right:-40px;top:-55px;width:145px;height:145px;border:28px solid rgba(255,255,255,.06);border-radius:50%}
+.dp-selector-icon{display:grid;place-items:center;width:46px;height:46px;flex:0 0 46px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28)}
+.dp-selector-icon .fa-solid{margin:0!important;color:inherit!important;font-size:18px!important;transform:none!important}
+.dp-selector-heading{min-width:0;position:relative;z-index:1}.dp-selector-heading small{display:block;font-size:9px;font-weight:800;letter-spacing:.78px;text-transform:uppercase;opacity:.82}.dp-selector-heading h2{margin:3px 0;font-size:18px;line-height:1.18;overflow-wrap:anywhere}.dp-selector-heading p{margin:0;font-size:10px;opacity:.88}
+.dp-selector-context{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:10px 10px 2px}
+.dp-selector-context>div{min-width:0;padding:9px 10px;background:#fff;border:1px solid var(--sel-line);border-radius:10px}.dp-selector-context span{display:block;color:var(--sel-muted);font-size:8px;font-weight:800;text-transform:uppercase}.dp-selector-context strong{display:block;margin-top:3px;font-size:11px;overflow-wrap:anywhere}
+.dp-selector-options{padding:11px 10px 2px}.dp-selector-options h3{margin:0;color:var(--sel-primary-dark);font-size:14px}.dp-selector-options>p{margin:4px 0 10px;color:var(--sel-muted);font-size:9px;line-height:1.45}
+.dp-selector-list{display:grid;gap:8px}
+.dp-selector-option{display:grid;grid-template-columns:42px minmax(0,1fr) 26px;align-items:center;gap:10px;width:100%;padding:11px;border:1px solid var(--sel-line);border-left:4px solid var(--option-color,var(--sel-primary));border-radius:12px;color:var(--sel-text);background:#fff;text-align:left;cursor:pointer;box-shadow:0 2px 8px rgba(36,63,86,.06);transition:transform .17s ease,box-shadow .17s ease,border-color .17s ease}
+.dp-selector-option:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(36,63,86,.12);border-color:#b8ccdd}.dp-selector-option:focus-visible{outline:2px solid #2673c9;outline-offset:2px}
+.dp-selector-option-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;color:var(--option-color,var(--sel-primary));background:color-mix(in srgb,var(--option-color,var(--sel-primary)) 11%,white)}
+.dp-selector-option-icon .fa-solid,.dp-selector-option-arrow .fa-solid{margin:0!important;color:inherit!important;transform:none!important}.dp-selector-option-icon .fa-solid{font-size:15px!important}.dp-selector-option-copy{min-width:0}.dp-selector-option-copy strong{display:block;color:var(--option-color,var(--sel-primary));font-size:13px}.dp-selector-option-copy span{display:block;margin-top:3px;color:var(--sel-muted);font-size:9px;line-height:1.4}.dp-selector-option-arrow{color:#8ba0b2;font-size:11px}
+.dp-selector-option[data-type="estadistico"]{--option-color:var(--sel-stat)}.dp-selector-option[data-type="seguridad"]{--option-color:var(--sel-security)}.dp-selector-option[data-type="obra_publica"]{--option-color:var(--sel-work)}
+.dp-selector-option[disabled]{opacity:.52;cursor:not-allowed;transform:none;box-shadow:none}
+.dp-selector-empty{display:flex;align-items:flex-start;gap:8px;margin:10px;padding:11px;color:#725b20;background:#fff8db;border:1px solid #eadb9e;border-radius:10px;font-size:10px}.dp-selector-empty[hidden]{display:none!important}.dp-selector-empty p{margin:0;line-height:1.45}
+.dp-selector-status{min-height:18px;padding:5px 10px 0;color:var(--sel-muted);font-size:9px;text-align:center}
+@media(max-width:350px){.dp-selector-context{grid-template-columns:1fr}.dp-selector-option{grid-template-columns:38px minmax(0,1fr) 20px;padding:9px}}
+
+/* ============================================================
+   ALTURA DINÁMICA DEL SELECTOR
+   Se adapta al número de fichas disponibles
+   ============================================================ */
+
+.dinamicPanel-detail[data-panel-type="selector"] {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.dp-selector-ficha {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: auto;
+    min-height: 0;
+
+    padding-bottom: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f9fbfd,
+            #f1f5f8
+        );
+}
+
+/* Encabezado más compacto */
+.dp-selector-hero {
+    flex: 0 0 auto;
+    padding: 13px 14px;
+}
+
+.dp-selector-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+}
+
+.dp-selector-heading h2 {
+    font-size: 17px;
+}
+
+/* Contexto geográfico */
+.dp-selector-context {
+    flex: 0 0 auto;
+    padding: 9px 10px 0;
+}
+
+.dp-selector-context > div {
+    padding: 8px 10px;
+}
+
+/* Área de selección */
+.dp-selector-options {
+    flex: 0 0 auto;
+    padding: 10px 10px 2px;
+}
+
+.dp-selector-options > p {
+    margin: 3px 0 9px;
+}
+
+/*
+ * El listado solamente ocupa el espacio
+ * requerido por las fichas existentes.
+ */
+.dp-selector-list {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+
+    height: auto;
+    min-height: 0;
+
+    /*
+     * Máximo aproximado para 5 fichas.
+     * Si posteriormente existen más,
+     * aparecerá scroll solamente aquí.
+     */
+    max-height: 390px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 0 2px 2px 0;
+}
+
+/* Tarjetas ligeramente más compactas */
+.dp-selector-option {
+    min-height: 78px;
+    padding: 10px 11px;
+}
+
+/* Estado inferior sin reservar altura */
+.dp-selector-status:empty {
+    display: none;
+}
+
+.dp-selector-status {
+    min-height: 0;
+    padding: 5px 10px 0;
+}
+
+/* No reservar espacio cuando no existe mensaje */
+.dp-selector-empty[hidden] {
+    display: none !important;
+}
+
+
+/* ============================================================
+   COMPORTAMIENTO SEGÚN CANTIDAD DE FICHAS
+   ============================================================ */
+
+/* Una sola ficha */
+.dp-selector-ficha[data-option-count="1"]
+.dp-selector-option {
+    min-height: 72px;
+}
+
+/* Dos fichas */
+.dp-selector-ficha[data-option-count="2"]
+.dp-selector-list {
+    gap: 8px;
+}
+
+/* Tres o cuatro fichas */
+.dp-selector-ficha[data-option-count="3"]
+.dp-selector-option,
+.dp-selector-ficha[data-option-count="4"]
+.dp-selector-option {
+    min-height: 72px;
+}
+
+
+/* ============================================================
+   PANEL LATERAL ESTRECHO
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    .dp-selector-hero {
+        padding: 12px;
+    }
+
+    .dp-selector-context {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        padding: 8px 8px 0;
+    }
+
+    .dp-selector-options {
+        padding: 9px 8px 2px;
+    }
+
+    .dp-selector-list {
+        gap: 7px;
+    }
+
+    .dp-selector-option {
+        min-height: 70px;
+
+        grid-template-columns:
+            38px
+            minmax(0, 1fr)
+            20px;
+
+        padding: 9px;
+    }
+}
+/* ============================================================
+   AJUSTE FINAL: EL ENCABEZADO PRINCIPAL YA MUESTRA EL OBJETO
+   ============================================================ */
+.dinamicPanel-detail[data-panel-type="selector"] .dp-selector-hero {
+  display: none !important;
+}
+
+.dinamicPanel-detail[data-panel-type="selector"] .dp-selector-context {
+  padding-top: 12px;
+}
+
+.dinamicPanel-detail[data-panel-type="selector"] .dp-selector-options {
+  padding-bottom: 10px;
+}
+
+/* Boton Regresar dentro de la barra de ACCIONES */
+.dinamicPanel-detailList-exportTools .dinamicPanel-fichaBackButton {
+  position: static;
+  z-index: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: auto;
+  min-width: 42px;
+  min-height: 42px;
+  margin: 0;
+  padding: 7px 9px;
+  border-radius: 11px;
+  color: #fff !important;
+  background: #8f1738 !important;
+  border-color: #8f1738 !important;
+  transform: none;
+}
+
+.dinamicPanel-detailList-exportTools .dinamicPanel-fichaBackButton:hover {
+  color: #fff !important;
+  background: #74122d !important;
+  border-color: #74122d !important;
+  transform: translateY(-1px);
+}
+
+.dinamicPanel-detailList-exportTools .dinamicPanel-fichaBackButton span {
+  display: inline;
+  color: inherit;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.dinamicPanel-detailList-exportTools .dinamicPanel-fichaBackButton .fa-solid {
+  margin: 0 !important;
+  color: inherit !important;
+  font-size: 12px !important;
+  transform: none !important;
+}

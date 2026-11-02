@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W8ZSQVS1BJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W8ZSQVS1BJ');
+</script>
+  <meta charset="UTF-8">
+  <meta http-equiv="expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable="no"' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
+  <title>Cuadernillos IPLANAY</title>
+
+  <!--<meta name="robots" content="noindex">-->
+  <link rel="icon" href="mdSitum.png" type="image/png">
+  <link rel="icon" type="image/png" href="mdSitum.png"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" href="mdSitum.png" type="image/png">
+  <link rel="shortcut icon" href="mdSitum.png" type="image/png">
+  <link rel="apple-touch-icon" href="mdSitum.png">
+  <link rel="apple-touch-icon-precomposed" href="mdSitum.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=10" />
+  <meta property="og:title" content="Cuadernillos geoestadísticos municipales — IPLANAY" /> 
+  <meta property="og:image" content="img/header/mapaDigital.png" /> 
+  <meta property="og:description" content="Geovisor de los cuadernillos geoestad&iacute;sticos municipales de Nayarit." /> 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="js/frameworks/jquery/css/custom-theme/jquery-ui-1.10.3.custom.css" />
+  <link rel="stylesheet" href="https://js.arcgis.com/3.42/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/3.42/esri/css/esri.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/welcome.css">
+  <link rel="stylesheet" href="css/dropdown.css">
+  <link rel="stylesheet" href="css/responsive.css" media="screen">
+  <script src="js/responsive.js" defer></script>
+  <script src="config/mdmVersion.js?v=20261102-1"></script>
+
+  <!-- Fichas tematicas modulares de dinamicPanel -->
+  <link rel="stylesheet" href="js/core/ui/widgets/dinamicPanel/fichas/selector/ficha.selector.css">
+  <link rel="stylesheet" href="js/core/ui/widgets/dinamicPanel/fichas/estadistico/ficha.estadistico.css?v=20261020-8">
+  <link rel="stylesheet" href="js/cuadernillo/ficha.css?v=20261102-5">
+</head>
+
+<body>
+
+  <div id="main">
+
+    <header class="header">
+      <div class="iplanay-banda">
+        <img class="iplanay-marca" src="img/header/nayarit.png" alt="Nayarit. Nuestra pasión y compromiso">
+        <div class="iplanay-titulo">
+          <span class="iplanay-titulo-nombre">Cuadernillos geoestadísticos municipales</span>
+          <span class="iplanay-titulo-anio">2026</span>
+        </div>
+        <img class="iplanay-marca" src="img/header/iplanay.png" alt="IPLANAY. Instituto de Planeación del Estado de Nayarit">
+      </div>
+    </header>
+    <div id="content">
+      <!--<div id="area" style="position:absolute;border: 1px solid red;"></div>-->
+      <div id="panel-left"></div>
+      <div id="middle">
+        <div id="panel-center">
+          <div id="mapping">
+                <!-- <canvas id="windyMap" class="fill"></canvas> -->
+            <div id="mapLimits"></div>
+            <div id="pelicula"></div>
+            <div id="map"></div>
+          </div>
+        </div>
+        <div id="panel-bottom"></div>
+      </div>
+      <div id="panel-right"></div>
+    </div>
+    <div id="contentCompare"></div>
+  </div>
+
+<div id="item_popup"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBemVJ_EjNYiMfbztEJzoRWG187gCPAcSM"></script><!--v=3.12&-->
+<script src="https://kit.fontawesome.com/67ebeb7e40.js" crossorigin="anonymous"></script>
+<script rel="preload" src="js/frameworks/jquery/js/jquery.min.js" as="script" ></script>
+<script rel="preload" src="js/frameworks/jquery/js/jquery-ui.min.js" as="script"></script>
+<script rel="preload" src="js/frameworks/jquery/js/jquery.mousewheel-3.0.6.pack.js" as="script"></script>
+<script rel="preload" src="js/frameworks/amplify/amplify.js" as="script"></script>
+<script rel="preload" src="js/frameworks/lz-string/lz-string.min.js" as="script"></script>
+<script rel="preload" src="js/frameworks/base64/base64.js" as="script"></script>
+<script rel="preload" src="js/frameworks/history/history.js" as="script"></script>
+<script rel="preload" src="js/frameworks/chroma/chroma.min.js" as="script"></script>
+<script rel="preload" src="js/frameworks/upload/js/jquery.iframe-transport.js" as="script"></script>
+<script rel="preload" src="js/frameworks/upload/js/jquery.fileupload.js" as="script"></script>
+<script rel="preload" src="js/frameworks/upload/js/jquery.ui.widget.js" as="script"></script>
+<script rel="preload" src="js/frameworks/cookie/jquery.cookie.js" as="script"></script>
+<script src="js/welcome.js" defer></script>
+
+<script rel="preload" type="text/javascript" src="js/frameworks/d3/d3.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/d3/d3.geom.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/d3/d3.layout.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/d3/CodeFlower.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/d3/dataConverter.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/html2canvas/dist/html2canvas.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/html2canvas/dist/canvg.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="js/frameworks/jsPdf/jsPdf.js" as="script"></script>
+<!--<script rel="preload" src="http://esri.github.io/wind-js/windy.js" type="text/javascript" as="script"></script>-->
+<!--
+<script type="text/javascript" src="FileSaver.js"></script>
+<script type="text/javascript" src="Blob.js"></script>
+<script type="text/javascript" src="BlobBuilder.js"></script>-->
+<script rel="preload" type="text/javascript" src="json2.js" as="script"></script>
+<script rel="preload" type="text/javascript" src="proj4js-combined.js" as="script"></script>
+<script>
+		    Proj4js.defs["EPSG:9102008"] =
+	        "+proj=longlat +datum=WGS84 +no_defs";
+</script>
+<script rel="preload" src="http://js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript" as="script"></script>
+<script rel="preload" data-main="js/main.js?v=20261028ol2" src="js/frameworks/require/require.js" as="script"></script>
+
+<script>
+  /* Evita un ReferenceError cuando la vista previa bloquea o tarda en cargar
+     proj4js-combined.js. En el geovisor normal la definición se registra en
+     cuanto Proj4js está disponible. */
+  (function registerCustomProjection() {
+    var definition = "+proj=longlat +datum=WGS84 +no_defs";
+
+    if (window.Proj4js && window.Proj4js.defs) {
+      window.Proj4js.defs["EPSG:9102008"] = definition;
+      return;
+    }
+
+    window.addEventListener('load', function () {
+      if (window.Proj4js && window.Proj4js.defs) {
+        window.Proj4js.defs["EPSG:9102008"] = definition;
+      } else if (window.console && console.warn) {
+        console.warn('[SIGEX] proj4js-combined.js no se cargó; se omitió EPSG:9102008.');
+      }
+    }, { once: true });
+  })();
+</script>
+<script rel="preload" src="http://js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript" as="script"></script>
+<!-- Fichas tematicas: deben cargarse antes de RequireJS/main.js -->
+<script src="js/core/ui/widgets/dinamicPanel/fichas/ficha.registry.js?v=20261020-8"></script>
+<script src="js/core/ui/widgets/dinamicPanel/fichas/selector/ficha.selector.js?v=20261020-8"></script>
+<script src="js/core/ui/widgets/dinamicPanel/fichas/estadistico/ficha.estadistico.js?v=20261020-8"></script>
+<script src="js/cuadernillo/ficha.js?v=20261102-3"></script>
+<script rel="preload" data-main="js/main.js?v=20261028ol2" src="js/frameworks/require/require.js" as="script"></script>
+
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "60px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+
+  <style>
+    .swal2-styled.swal2-confirm {
+      background-color:rgb(85 105 112) !important;
+    }
+    .swal2-styled.swal2-confirm:hover {
+      background-color:rgb(109 128 127) !important;
+    }
+
+    div:where(.swal2-container) img:where(.swal2-image) {
+      max-width: 80%;
+      margin: 1em auto 1em;
+    }
+
+    @media only screen and (max-width: 539px){
+      .swal2-popup {
+        height: 80% !important;
+        width: 350px !important;
+      }
+      .swal2-image{
+        height: 120px;
+      }
+
+    }
+
+    @media only screen and (max-height: 780px){
+      div:where(.swal2-container) img:where(.swal2-image) {
+        max-width: 50%;
+      }
+    }
+
+    @media (min-width: 540px) and (max-width: 800px){
+      .swal2-popup{
+        width: 80% !important;
+      }
+      div:where(.swal2-container) img:where(.swal2-image) {
+        max-width: 60%;
+        margin: 1em auto 1em;
+      }
+    }
+  </style>
+
+</body>
+</html>

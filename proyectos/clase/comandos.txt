@@ -1,0 +1,13 @@
+La base base_fundamentos esta en plataforma-postgres.
+Desde Windows: localhost puerto 5433, usuario postgres, base base_fundamentos.
+
+Estos comandos vuelven a cargar los scripts. La base ya tiene los datos.
+La contraseña es POSTGRES_PASSWORD en D:\ws\plataforma\.env.
+
+cd /d D:\ws\plataforma\proyectos\clase\sql
+set /p PGPASSWORD=Contraseña de Postgres:
+
+docker exec -i -e PGPASSWORD=%PGPASSWORD% plataforma-postgres psql -U postgres -d base_fundamentos < .\01_crear_esquema.sql
+docker exec -i -e PGPASSWORD=%PGPASSWORD% plataforma-postgres psql -U postgres -d base_fundamentos < .\02_crear_tablas.sql
+docker exec -i -e PGPASSWORD=%PGPASSWORD% plataforma-postgres psql -U postgres -d base_fundamentos < .\03_insertar_datos.sql
+docker exec -i -e PGPASSWORD=%PGPASSWORD% plataforma-postgres psql -U postgres -d base_fundamentos < .\04_consultas_prueba.sql

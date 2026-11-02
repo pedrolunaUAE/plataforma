@@ -1,0 +1,978 @@
+/* ==========================================================
+   MxSIG ToolPanel 2.0 (Optimizado)
+   ========================================================== */
+
+.custom-toolPanel {
+    --toolPanel-accent: #0078d4;
+    --toolPanel-accent-dark: #005a9e;
+
+    position: absolute;
+    display: none;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
+    color: #233746;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12), 0 24px 60px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 3000;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    
+}
+
+.custom-toolPanel:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15), 0 28px 70px rgba(0, 0, 0, 0.22);
+}
+
+.toolPanel-focused {
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.30), 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.toolPanel-header {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 16px;
+    background: linear-gradient(135deg, #468197 0%, #529ab4 45%, #5eb1cf 100%);
+    color: #ffffff;
+    cursor: move;
+}
+
+.toolPanel-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toolPanel-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 18px;
+}
+
+.toolPanel-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+.toolPanel-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.toolPanel-action {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.toolPanel-action:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.toolPanel-action i {
+    font-size: 15px;
+}
+
+/* ==========================================================
+   CONTENEDOR Y SCROLL
+   ========================================================== */
+
+.toolPanel-body {
+    padding: 1px;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f9fb 100%);
+    overflow-y: auto;
+    max-height: calc(100vh - 180px);
+}
+
+.toolPanel-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toolPanel-body::-webkit-scrollbar-track {
+    background: #edf2f7;
+}
+
+.toolPanel-body::-webkit-scrollbar-thumb {
+    background: #90a4b2;
+    border-radius: 20px;
+}
+
+.toolPanel-body::-webkit-scrollbar-thumb:hover {
+    background: #5d7280;
+}
+
+/* ==========================================================
+   GEOREFERENCIA MXSIG (PANEL INTERNO)
+   ========================================================== */
+
+/* Ocultar domicilio no requerido */
+#mdm6DinamicPanel_geo_address,
+label[for="mdm6DinamicPanel_geo_address"] {
+    display: none !important;
+}
+
+/* Contenedor principal corregido */
+#mdm6DinamicPanel_geoPanel .geoControls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #ffffff;
+    /*border: 1px solid #dce5ec;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);*/
+}
+
+/* Selección de geometría en Grid (2 columnas) */
+#mdm6DinamicPanel_geoPanel .ui-controlgroup {
+    /*display: grid !important;*/
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+#mdm6DinamicPanel_geoPanel .ui-checkboxradio-icon,
+#mdm6DinamicPanel_geoPanel .ui-checkboxradio-icon-space {
+    display: none !important;
+}
+
+/* Tarjetas de opción (Punto, Línea, Polígono) */
+#mdm6DinamicPanel_geoPanel .geoType + label {
+    width: 100% !important;
+    height: 80% !important;
+    margin: 0 !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 12px !important;
+    border: 1px solid #dce5ec !important;
+    background: #f8fafc !important;
+    color: #475569 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+#mdm6DinamicPanel_geoPanel .geoType + label:hover {
+    transform: translateY(-2px);
+    border-color: #0078d4 !important;
+    color: #0078d4 !important;
+    background: #ffffff !important;
+}
+
+#mdm6DinamicPanel_geoPanel .geoType:checked + label {
+    background: #0078d4 !important;
+    border-color: #0078d4 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 120, 212, 0.3);
+}
+
+/* Iconos de tarjetas */
+#mdm6DinamicPanel_geoPanel label[for$="_geo_point"]::before { content: "\f3c5"; }
+#mdm6DinamicPanel_geoPanel label[for$="_geo_line"]::before { content: "\f4d7"; }
+#mdm6DinamicPanel_geoPanel label[for$="_geo_poly"]::before { content: "\f5ee"; }
+
+#mdm6DinamicPanel_geoPanel label[for$="_geo_point"]::before,
+#mdm6DinamicPanel_geoPanel label[for$="_geo_line"]::before,
+#mdm6DinamicPanel_geoPanel label[for$="_geo_poly"]::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 20px;
+    display: block;
+}
+
+/* ==========================================================
+   BOTONES Y ACCIONES INTERNAS
+   ========================================================== */
+
+/* Grupo de botones en paralelo (Importar/Exportar/Limpiar) */
+.toolPanel-btn-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+#mdm6DinamicPanel_geoPanel button {
+    border: none;
+    border-radius: 25px !important;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* ==========================================================
+   IMPORTAR / EXPORTAR / LIMPIAR
+   MISMO ESTILO QUE PUNTO-LINEA-POLIGONO
+   ========================================================== */
+
+#mdm6DinamicPanel_geoPanel button[id="import"],
+#mdm6DinamicPanel_geoPanel button[id="export"],
+#mdm6DinamicPanel_geoPanel button[id="clean"] {
+
+    width: 100%;
+    min-height: 42px;
+    margin: 0;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    border-radius: 12px !important;
+    border: 1px solid #dce5ec !important;
+    background: #f8fafc !important;
+    color: #475569 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all .2s ease;
+    box-sizing: border-box;
+}
+
+/* Hover */
+
+#mdm6DinamicPanel_geoPanel button[id="import"]:hover,
+#mdm6DinamicPanel_geoPanel button[id="export"]:hover,
+#mdm6DinamicPanel_geoPanel button[id="clean"]:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #0078d4 !important;
+
+    color: #0078d4 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 4px 12px rgba(0,120,212,.15);
+}
+
+/* Activo */
+
+#mdm6DinamicPanel_geoPanel button[id="import"]:active,
+#mdm6DinamicPanel_geoPanel button[id="export"]:active,
+#mdm6DinamicPanel_geoPanel button[id="clean"]:active {
+
+    background: #0078d4 !important;
+    border-color: #0078d4 !important;
+    color: #ffffff !important;
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.30);
+}
+
+/* Botón Buffer */
+#mdm6DinamicPanel_geoPanel button[id*="buffer"] {
+    width: 100%;
+    min-height: 42px;
+    background: linear-gradient(135deg, #0078d4, #005a9e) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 120, 212, 0.2);
+}
+
+#mdm6DinamicPanel_geoPanel button[id*="buffer"]:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Botón Limpiar */
+#mdm6DinamicPanel_geoPanel button[id*="clean"] {
+    width: 100%;
+    min-height: 38px;
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+#mdm6DinamicPanel_geoPanel button[id*="clean"]:hover {
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    border-color: #ef4444 !important;
+}
+
+/* ==========================================================
+   ESTADOS DE VENTANA Y RESPONSIVE
+   ========================================================== */
+
+.toolPanel-minimized {
+    height: auto !important;
+}
+
+.toolPanel-minimized .toolPanel-header {
+    border-radius: 18px;
+}
+
+@media (max-width: 480px) {
+    #mdm6DinamicPanel_geoPanel .ui-controlgroup {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================
+   IMPORTAR / EXPORTAR / LIMPIAR
+   ESTILO IGUAL A PUNTO - LINEA - POLIGONO
+   ========================================================== */
+
+#mdm6DinamicPanel_geo_btnImport,
+#mdm6DinamicPanel_geo_btnExport,
+#mdm6DinamicPanel_geo_btnClearBuffers {
+
+    width: 100% !important;
+
+    min-height: 42px !important;
+
+    padding: 8px 12px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #dce5ec !important;
+
+    background: #f8fafc !important;
+
+    color: #475569 !important;
+
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    box-shadow: none !important;
+
+    transition: all 0.2s ease !important;
+}
+
+/* Hover */
+
+#mdm6DinamicPanel_geo_btnImport:hover,
+#mdm6DinamicPanel_geo_btnExport:hover,
+#mdm6DinamicPanel_geo_btnClearBuffers:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #0078d4 !important;
+
+    color: #0078d4 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.15) !important;
+}
+
+/* Activo */
+
+#mdm6DinamicPanel_geo_btnImport:active,
+#mdm6DinamicPanel_geo_btnExport:active,
+#mdm6DinamicPanel_geo_btnClearBuffers:active {
+
+    background: #0078d4 !important;
+
+    border-color: #0078d4 !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.30) !important;
+}
+
+/* ==========================================================
+   OCULTAR BOTON TERMINAR
+   ========================================================== */
+
+#mdm6DinamicPanel_geo_btnEndAction,
+#mdm6DinamicPanel_geo_btnFinish{
+
+    display:none !important;
+}
+
+/* ==========================================================
+   PANEL MEDIR
+   ========================================================== */
+
+#mdm6DinamicPanel_measurePanel,
+#mdm6DinamicPanel_measurePanel .dinamicPanel-measurePanel{
+    width:100%;
+    box-sizing:border-box;
+}
+
+.measureTitle{
+    display:none;
+}
+
+.measureOption{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    width:100% !important;
+    height:auto !important;
+    margin:0 0 16px 0 !important;
+}
+
+/* Distancia / Área */
+
+#mdm6DinamicPanel_measure_typeSet{
+    display:flex !important;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    width:100% !important;
+    margin:0 !important;
+    box-sizing:border-box;
+}
+
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-label{
+    flex:1;
+    max-width:160px;
+}
+
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-icon,
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-icon-space,
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-icon,
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-icon-space{
+    display:none !important;
+}
+
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-label{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    min-width:0 !important;
+    min-height:0px !important;
+    margin:0 !important;
+    padding:10px 12px !important;
+    color:#475569 !important;
+    background:#f8fafc !important;
+    border:1px solid #dce5ec !important;
+    border-radius:12px !important;
+    box-shadow:none !important;
+    box-sizing:border-box;
+    font-size:13px !important;
+    font-weight:600 !important;
+    transition:all .2s ease !important;
+}
+
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-label:hover{
+    color:#0078d4 !important;
+    background:#ffffff !important;
+    border-color:#0078d4 !important;
+    transform:translateY(-2px);
+    box-shadow:0 4px 14px rgba(0,120,212,.15) !important;
+}
+
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-checked,
+#mdm6DinamicPanel_measure_typeSet .ui-state-active{
+    color:#ffffff !important;
+    background:#0078d4 !important;
+    border-color:#0078d4 !important;
+    box-shadow:0 4px 14px rgba(0,120,212,.25) !important;
+}
+
+#mdm6DinamicPanel_measure_line + label::before,
+#mdm6DinamicPanel_measure_poly + label::before{
+    margin-right:7px;
+    font-family:"Font Awesome 6 Free";
+    font-size:17px;
+    font-weight:900;
+}
+
+#mdm6DinamicPanel_measure_line + label::before{
+    content:"\f4d7";
+}
+
+#mdm6DinamicPanel_measure_poly + label::before{
+    content:"\f5ee";
+}
+
+.measureControls{
+    display:block !important;
+    width:100% !important;
+    margin:0 !important;
+}
+
+.dinamicPanel-measurePanel .measureControls .controls{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:128px !important;
+    margin:0 !important;
+    padding:0px !important;
+    background:#ffffff !important;
+    border:1px solid #dce5ec !important;
+    border-radius:14px !important;
+    box-shadow:0 4px 12px rgba(0,0,0,.05) !important;
+    box-sizing:border-box;
+}
+
+#mdm6DinamicPanel_measure_value{
+    order:1 !important;
+    display:block !important;
+    float:none !important;
+    width:100% !important;
+    height:auto !important;
+    margin:0 0 16px 0 !important;
+    padding:0 !important;
+    color:#0f6cbd !important;
+    font-size:25px !important;
+    font-weight:700 !important;
+    line-height:1.1 !important;
+    text-align:center !important;
+}
+
+/* Métrico / Inglés */
+
+#mdm6DinamicPanel_measure_unitSet{
+    order:2 !important;
+
+    display:flex !important;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+
+    float:none !important;
+
+    width:auto !important;
+    height:auto !important;
+
+    margin:0 auto !important;
+    padding:0 !important;
+}
+
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-label{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    min-width:0 !important;
+    min-height:38px !important;
+    margin:0 !important;
+    padding:7px 12px !important;
+    color:#475569 !important;
+    background:#f8fafc !important;
+    border:1px solid #dce5ec !important;
+    border-radius:10px !important;
+    box-sizing:border-box;
+    font-size:12px !important;
+    font-weight:600 !important;
+    transition:all .2s ease !important;
+}
+
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-label:hover{
+    color:#0078d4 !important;
+    background:#ffffff !important;
+    border-color:#0078d4 !important;
+}
+
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-checked,
+#mdm6DinamicPanel_measure_unitSet .ui-state-active{
+    color:#ffffff !important;
+    background:#0078d4 !important;
+    border-color:#0078d4 !important;
+}
+
+.dinamicPanel-measurePanel .controls .unit,
+.dinamicPanel-measurePanel .controls .value{
+    float:none !important;
+    height:auto !important;
+}
+
+#mdm6DinamicPanel_measure_btnEndAction,
+#mdm6DinamicPanel_measure_btnFinish{
+    display:none !important;
+}
+
+@media (max-width:480px){
+    #mdm6DinamicPanel_measure_typeSet{
+        grid-template-columns:1fr;
+    }
+
+    #mdm6DinamicPanel_measure_unitSet{
+        width:100% !important;
+    }
+}
+
+/* ==========================================================
+   COMPOSTELA UI
+   ToolPanel alineado con DinamicPanel
+   ========================================================== */
+
+.custom-toolPanel {
+
+    --toolPanel-accent: #7b1e3a;
+    --toolPanel-accent-dark: #5d152c;
+
+    background: #f8f5f1;
+
+    border: 1px solid #e4d8ca;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+
+    backdrop-filter: none;
+}
+
+.custom-toolPanel:hover {
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.12);
+}
+
+.toolPanel-focused {
+
+    box-shadow:
+        0 0 0 2px rgba(123,30,58,.18),
+        0 12px 28px rgba(0,0,0,.12);
+}
+
+/* ==========================================================
+   HEADER
+   ========================================================== */
+
+.toolPanel-header {
+
+    height: 42px;
+
+    min-height: 42px;
+
+    padding: 0 12px;
+
+    background: #f6f2ec;
+
+    border-bottom: 1px solid #e4d8ca;
+
+    color: #7b1e3a;
+
+    cursor: move;
+}
+
+.toolPanel-heading {
+
+    gap: 8px;
+}
+
+.toolPanel-icon {
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ede4d8;
+
+    color: #7b1e3a;
+
+    font-size: 15px;
+}
+
+.toolPanel-title {
+
+    color: #7b1e3a;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: .2px;
+
+    white-space: nowrap;
+}
+
+.toolPanel-actions {
+
+    gap: 4px;
+}
+
+.toolPanel-action {
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #6b7280;
+
+    cursor: pointer;
+
+    transition: all .2s ease;
+}
+
+.toolPanel-action:hover {
+
+    background: #ede4d8;
+
+    color: #7b1e3a;
+
+    transform: translateY(0);
+}
+
+.toolPanel-action:active {
+
+    transform: scale(.94);
+
+    background: #e4d8ca;
+}
+
+/* ==========================================================
+   BODY
+   ========================================================== */
+
+.toolPanel-body {
+
+    padding: 6px;
+
+    background: #faf8f5;
+
+    overflow-y: auto;
+
+    max-height: calc(100vh - 180px);
+}
+
+/* ==========================================================
+   SCROLLBAR
+   ========================================================== */
+
+.toolPanel-body::-webkit-scrollbar {
+
+    width: 8px;
+}
+
+.toolPanel-body::-webkit-scrollbar-track {
+
+    background: #f0ebe5;
+}
+
+.toolPanel-body::-webkit-scrollbar-thumb {
+
+    background: #c7b7a3;
+
+    border-radius: 20px;
+}
+
+.toolPanel-body::-webkit-scrollbar-thumb:hover {
+
+    background: #9a7c86;
+}
+
+/* ==========================================================
+   TARJETAS COMPOSTELA
+   ========================================================== */
+
+#mdm6DinamicPanel_geoPanel .geoType + label,
+#mdm6DinamicPanel_geoPanel button[id="import"],
+#mdm6DinamicPanel_geoPanel button[id="export"],
+#mdm6DinamicPanel_geoPanel button[id="clean"],
+#mdm6DinamicPanel_geo_btnImport,
+#mdm6DinamicPanel_geo_btnExport,
+#mdm6DinamicPanel_geo_btnClearBuffers,
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-label,
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-label {
+
+    background: rgb(123, 30, 58,0%)!important;
+
+    border:  rgb(0,0,0,0%) !important;
+
+    color: #641e26 !important;
+
+    border-radius: 24px !important;
+
+    transition: all .20s ease !important;
+}
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
+#mdm6DinamicPanel_geoPanel .geoType + label:hover,
+#mdm6DinamicPanel_geo_btnImport:hover,
+#mdm6DinamicPanel_geo_btnExport:hover,
+#mdm6DinamicPanel_geo_btnClearBuffers:hover,
+#mdm6DinamicPanel_geoPanel button[id="import"]:hover,
+#mdm6DinamicPanel_geoPanel button[id="export"]:hover,
+#mdm6DinamicPanel_geoPanel button[id="clean"]:hover,
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-label:hover,
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-label:hover {
+
+    background: rgb(123, 30, 58,0%)!important;
+
+    border-color: rgb(123, 30, 58, 50%) !important;
+
+    color: rgb(123, 30, 58) !important;
+
+    box-shadow:
+        0 4px 12px rgba(123,30,58,.12) !important;
+
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   ESTADO ACTIVO
+   ========================================================== */
+
+#mdm6DinamicPanel_geoPanel .geoType:checked + label,
+#mdm6DinamicPanel_geo_btnImport:active,
+#mdm6DinamicPanel_geo_btnExport:active,
+#mdm6DinamicPanel_geo_btnClearBuffers:active,
+#mdm6DinamicPanel_geoPanel button[id="import"]:active,
+#mdm6DinamicPanel_geoPanel button[id="export"]:active,
+#mdm6DinamicPanel_geoPanel button[id="clean"]:active,
+#mdm6DinamicPanel_measure_typeSet .ui-checkboxradio-checked,
+#mdm6DinamicPanel_measure_typeSet .ui-state-active,
+#mdm6DinamicPanel_measure_unitSet .ui-checkboxradio-checked,
+#mdm6DinamicPanel_measure_unitSet .ui-state-active {
+
+    background: #7b1e3a00 !important;
+
+    border-color: #7b1e3a00 !important;
+
+    /*color: #5d152c !important;*/
+
+    box-shadow:
+        0 6px 14px rgba(123,30,58,.22) !important;
+}
+
+/* ==========================================================
+   BUFFER
+   ========================================================== */
+
+#mdm6DinamicPanel_geoPanel button[id*="buffer"] {
+
+    background:
+        linear-gradient(
+            135deg,
+            #7b1e3a,
+            #5d152c
+        ) !important;
+
+    border: none !important;
+
+    color: #ffffff !important;
+}
+
+#mdm6DinamicPanel_geoPanel button[id*="buffer"]:hover {
+
+    opacity: .95;
+
+    transform: translateY(-1px);
+}
+
+/* ==========================================================
+   MEDICIÓN
+   ========================================================== */
+
+#mdm6DinamicPanel_measure_value {
+
+    color: #7b1e3a !important;
+
+    font-size: 26px !important;
+
+    font-weight: 700 !important;
+}
+
+.dinamicPanel-measurePanel .measureControls .controls {
+
+    background: #ffffff !important;
+
+    border: 1px solid #e4d8ca !important;
+
+    border-radius: 16px !important;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.05) !important;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width:768px){
+
+    .custom-toolPanel{
+
+        border-radius:16px;
+    }
+
+    .toolPanel-title{
+
+        font-size:13px;
+    }
+
+    .toolPanel-icon{
+
+        width:26px;
+        height:26px;
+    }
+
+    .toolPanel-action{
+
+        width:26px;
+        height:26px;
+    }
+}
+
+@media (max-width:480px){
+
+    .custom-toolPanel{
+
+        width:calc(100vw - 20px) !important;
+
+        left:10px !important;
+
+        right:10px !important;
+    }
+
+    #mdm6DinamicPanel_measure_typeSet,
+    #mdm6DinamicPanel_geoPanel .ui-controlgroup{
+
+        display:grid !important;
+
+        grid-template-columns:1fr !important;
+    }
+
+    #mdm6DinamicPanel_measure_unitSet{
+
+        width:100% !important;
+    }
+}

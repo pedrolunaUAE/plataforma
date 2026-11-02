@@ -1,0 +1,278 @@
+.headerLogoMDM{
+    right: 60px !important;
+}
+#headerSupport{
+    position: absolute;
+    right: 23px;
+    top: 0px;
+    z-index: 3;
+}
+
+.template_support{
+    display:block;
+    background-image:url(img/support.png);
+    overflow:hidden;
+    background-repeat:no-repeat;
+}
+.label_support{
+    display: inline-block;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 120%;
+    width:130px;
+    cursor: pointer;
+    font-weight:bold;
+}
+.label_support a{
+    text-decoration: none;
+    color:#030202;
+}
+.label_support a:hover{
+     color:#13679F;
+     font-weight: bold;
+}
+.margintop{
+    margin-top: 10px;
+}
+.headerPhones{
+    font-weight: bold;
+}
+.phones{
+    /*margin-left: 25px;*/
+    font-size: 120%;
+    color:#808080;
+}
+.icon_support{
+    display: inline-block;
+    position: relative;
+    top: 7px;
+}
+.ts_support{
+    width: 30px;
+    height: 50px;
+    background-position: -148px 6px;
+}
+.ts_email{
+    width:21px; height:22px;background-position:-57px -11px;
+}
+
+.ts_facebook{
+    width:21px; height:22px;background-position:-114px -11px;
+}
+
+.ts_twitter{
+    width:21px; height:22px;background-position:-142px -11px;
+}
+
+.ts_phone{
+    width:21px; height:22px;background-position:-85px -11px;
+}
+
+.ts_chat{
+    width:21px; height:22px;background-position:-30px -11px;
+}
+.ts_manual{
+    width:21px; height:22px;background-position:-2px -11px;
+}
+
+/* =====================================================
+   SOPORTE MXSIG 3.0
+===================================================== */
+
+#popup_support{
+
+    min-width:145px;
+
+    padding:4px;
+
+    background:rgba(255,255,255,.98);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid #d8e2e6;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 14px 32px rgba(0,0,0,.14),
+        0 4px 10px rgba(0,0,0,.08);
+}
+
+/* limpiar popup heredado */
+
+#popup_support .PopupElementItem{
+
+    margin:0;
+    padding:0;
+
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+
+/* item */
+
+#popup_support .item{
+
+    display:flex;
+
+    align-items:right;
+
+    gap:12px;
+
+    padding:10px 12px;
+
+    margin-bottom:6px;
+
+    border:1px solid #e1e8ec;
+
+    border-radius:12px;
+
+    background:#ffffff;
+
+    transition:all .18s ease;
+
+    cursor:pointer;
+}
+
+#popup_support .item:hover{
+
+    background:#edf5f7;
+
+    border-color:#b7cbd4;
+
+    transform:translateY(-1px);
+}
+
+/* icono */
+
+.icon_support{
+
+    width:38px;
+    min-width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:#f4f8fa;
+
+    color:#356b7d;
+
+    font-size:16px;
+}
+
+/* texto */
+
+.label_support{
+
+    width:auto;
+
+    margin:0;
+
+    font-family:"Segoe UI",sans-serif;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#233746;
+
+    align-items:center;
+}
+
+.label_support a{
+
+    color:#233746;
+
+    text-decoration:none;
+}
+
+.label_support a:hover{
+
+    color:#1f5065;
+}
+
+/* teléfonos */
+
+.phones{
+
+    margin:8px 0 0 50px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    border:1px solid #dce5ec;
+
+    color:#60717a;
+
+    font-size:12px;
+}
+
+.headerPhones{
+
+    color:#1f5065;
+
+    font-weight:700;
+}
+
+/* =====================================================
+   FONT AWESOME
+===================================================== */
+
+.template_support{
+    background:none !important;
+}
+
+.ts_phone,
+.ts_chat,
+.ts_email,
+.ts_twitter,
+.ts_facebook,
+.ts_manual{
+
+    width:auto !important;
+    height:auto !important;
+
+    background:none !important;
+}
+
+.ts_phone::before{
+    content:"\f095";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+}
+
+.ts_chat::before{
+    content:"\f27a";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+}
+
+.ts_email::before{
+    content:"\f0e0";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+}
+
+.ts_twitter::before{
+    content:"\e61b";
+    font-family:"Font Awesome 6 Brands";
+}
+
+.ts_facebook::before{
+    content:"\f39e";
+    font-family:"Font Awesome 6 Brands";
+}
+
+.ts_manual::before{
+    content:"\f15c";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+}

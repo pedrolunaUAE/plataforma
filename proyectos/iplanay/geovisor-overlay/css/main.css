@@ -1,0 +1,1226 @@
+@import url('demo.css');
+html, body{     margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                font-size: 78%;
+                font-family: arial;
+            }
+#main{  
+	position: absolute;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+#header{position: absolute;left: 0px;right: 0px;top: 0px; height: 55px;}
+#content{ position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;}
+#contentCompare{ position: absolute; width:0px; right: 0px; top: 55px; bottom: 0px;}
+.apiMDM6Content{top:0px !important;
+}
+#main.compare #content{
+        right:50% !important;
+}
+#main.compare #contentCompare{
+        width:50% !important;
+        display: block;
+}
+
+#panel-left{position: absolute; top: 0px; left: 0px; width: 0px;bottom: 0px;}
+#middle{position: absolute; top: 0px; left: 0px; right: 0px;bottom: 0px;}
+#windyMap{
+        position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+        overflow: hidden;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        z-index: 3;
+        pointer-events: none;
+}
+#mapLimits{
+        position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+        overflow: hidden;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        z-index: 2;
+        pointer-events: none;
+        display: none;
+}
+#pelicula{
+        position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+        overflow: hidden;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        z-index: 1;
+        background: blue;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        pointer-events: none;
+        display: none;
+}
+#mapping{
+        position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+        overflow: hidden;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+#map {  
+		position: absolute;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+        overflow: hidden;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+/*
+.mapPrint{
+    width:10in !important; /*960px*/
+	/*height:5.8in !important; /*556.8*/
+/*}*/
+#panel-center{/*width: 100%; height: 100%;*/position:absolute;top:0px;left:0px;right:0px;bottom:0px;overflow: hidden;}
+#panel-bottom{position: absolute; height: 0px; left: 0px; right: 0px;bottom: 0px;}
+#panel-right{position: absolute; top: 0px; width: 0px; right: 0px;bottom: 0px;}
+#text {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    width: 512px;
+    z-index: 20000;
+    background-color: white;
+    padding: 0 0.5em 0.5em 0.5em;
+}
+/*Jquery */
+.ui-autocomplete{
+	z-index: 2100;
+}
+
+
+/* Ajustes --------------------------------------------- */
+.box-sizing{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.hidden{display:none;visibility:hidden}
+
+.Popup{display:block;background-image:url(../img/popup.png);overflow:hidden}
+.popupProp{width:11px; height:11px; background-repeat:no-repeat;}
+.row_left{background-position:-23px 0px;}
+.row_top{background-position:-11px 0px;}
+.row_right{background-position:-37px 0px;}
+.row_bottom{background-position:0px 0px;}
+
+.PopupOL{position:absolute;z-index:20000;}
+.titleOL{font-weight:bold;font-size: 120%;}
+#PopupOL .close{position: absolute; right: 5px; top: 2px;}
+#PopupOL .dinamicPanel-searchLink{float:left;position:relative;bottom:-5px;color:#03508D;}
+.popup_close{
+    position: absolute;
+    right: 5px;
+    top: 2px;
+}
+.Georef-window{
+    position:absolute;z-index:50000;top:180px;left:350px
+}
+.Georef-container{
+        background-color: #FFFFFF;
+        float: left;
+        height: 180px;
+        overflow: hidden;
+        padding-right: 5px;
+        width: 350px;
+    }
+.inputItem,
+.textAreaItem,
+.areaItem{
+
+    width:100% !important;
+
+    padding:10px 12px;
+
+    font-size:14px;
+
+    color:#233746;
+
+    border:1px solid #dce5ec;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    box-sizing:border-box;
+
+    transition:all .20s ease;
+}
+
+.inputItem:focus,
+.textAreaItem:focus,
+.areaItem:focus{
+
+    outline:none;
+
+    border-color:#0078d4;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(0,120,212,.10);
+}
+
+.pt30{
+    padding-top:35px;
+}
+.areaItem{
+    background-color: transparent;
+    border: 1px solid #DDDDDD;
+    color: #555555;
+    font-size: 120%;
+    height: 23px;
+    overflow: hidden;
+    padding-left: 3px;
+    width: 85%;
+    font-family:"arial"
+}
+
+/* ==========================================================
+   POPUP ELEMENT ITEM MXSIG 2.0
+   ========================================================== */
+
+.PopupElementItem{
+
+    position:relative;
+
+    margin:1em 0 3em;
+
+    padding:18px;
+
+    background:rgba(255,255,255,.98);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid #d8e2e6;
+
+    border-radius:18px;
+
+    color:#233746;
+
+    font-family:"Segoe UI",sans-serif;
+
+    box-sizing:border-box;
+
+    box-shadow:
+        0 14px 32px rgba(0,0,0,.14),
+        0 4px 10px rgba(0,0,0,.08);
+
+    transition:
+        box-shadow .20s ease,
+        border-color .20s ease,
+        transform .20s ease;
+}
+
+.PopupElementItem:hover{
+
+    border-color:#b7cbd4;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.18),
+        0 6px 12px rgba(0,0,0,.08);
+}
+
+/* ==========================================================
+   TITULO
+   ========================================================== */
+
+.PopupElementItem .titleOL{
+
+    margin:0 0 12px 0;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #e7edf1;
+
+    color:#1f5065;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+}
+
+/* ==========================================================
+   CERRAR
+   ========================================================== */
+
+.PopupElementItem .popup_close,
+#PopupOL .close{
+
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    background:none !important;
+
+    cursor:pointer;
+
+    transition:all .20s ease;
+}
+
+.PopupElementItem .popup_close:hover,
+#PopupOL .close:hover{
+
+    background:#edf5f7 !important;
+}
+
+.PopupElementItem .popup_close::before,
+#PopupOL .close::before{
+
+    content:"\f00d";
+
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:15px;
+
+    color:#68767c;
+}
+
+/* ==========================================================
+   ENLACES
+   ========================================================== */
+
+.PopupElementItem a{
+
+    color:#0078d4;
+    text-decoration:none;
+
+    transition:all .15s ease;
+}
+
+.PopupElementItem a:hover{
+
+    color:#005fa8;
+    text-decoration:underline;
+}
+
+/* ==========================================================
+   FLECHAS DEL POPUP
+   ========================================================== */
+
+.PopupElementItem:before{
+
+    border-color:#d8e2e6 transparent;
+}
+
+.PopupElementItem:after{
+
+    border-color:#ffffff transparent;
+}
+/**/
+
+.Popup-square:before {
+    /*
+    border-color: transparent #C91F2C;
+    border-style: solid;
+    border-width: 0 0 140px 140px;
+    bottom: -140px;
+    content: "";
+    position: absolute;
+    right: 0;*/
+}
+.Popup-square:after {
+    border-color: transparent white;
+    border-style: solid;
+    border-width: 0 0 30px 20px;
+    bottom: -29px;
+    content: "";
+    left: 0;
+    position: absolute;
+}
+.Popup-square {
+    box-shadow: 0px 0px 6px 0 #555555;
+    background: none repeat scroll 0 0 white;
+    /*color: #FFFFFF;
+    font: 140px/200px Arial,sans-serif;
+    height: 200px;*/
+    margin: 50px 0 30px;
+    position: relative;
+    text-align: center;
+    /*width: 200px;*/
+    padding: 8px 5px 5px 5px;
+}
+
+.Modal-window{
+    box-shadow: 0px 0px 6px 0 #555555;
+    background: none repeat scroll 0 0 white;
+    margin: 0px 0 0px;/*margin: 50px 0 30px;*/
+    position: relative;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.itemLineTime{/*border: 1px solid #DDDDDD;*/padding:5px 2px 2px 2px;}
+.itemLineTime .lineTimeSlider{padding:5px 10px 5px 10px}
+.lineTimeSecLab{float:left}
+.lineTime_view{float:left; padding-left: 5px; padding-right: 5px;}
+.labelLineTime{padding-left:25px}
+.closeLineTime{position:absolute;top:2px;right:5px}
+#lineTime{position:absolute;z-index:3000;bottom:30px;left:15px;}
+#ModalLineTime{position:absolute;z-index:4000;left:12%;top:0px}
+
+
+.lineTime_icons{display:block;background-image:url(../img/lineTime.png);overflow:hidden;width:29px; height:33px; background-repeat:no-repeat;}
+.icon_stop{background-position:-32px -5px;}
+.icon_play{background-position:0px -5px;}
+
+.Spinner{.lineTime_icons{display:block;background-image:url(../img/spinner.gif);overflow:hidden;width:31px; height:31px; background-repeat:no-repeat;}}
+.containerCopyRights{
+    position:absolute;bottom:0px;width:100%;
+}
+.copyRights{width: 200px;display: block;margin-left: auto;margin-right: auto; position: relative;top:-50px;z-index: 1000;-moz-user-select: none; 
+        -khtml-user-select: none; 
+        -webkit-user-select: none; 
+        -o-user-select: none; }
+#bottom_messages{width:200px;display: block;margin-left: auto;margin-right: auto; position: relative;top:-37px;z-index: 1000;}
+.apiMDM6Rights{
+    top:-40px !important;
+}
+#map{overflow: hidden}
+
+.lineTime_slider_modal_disabled {opacidad{-moz-opacity:0.80;opacity:0.80;filter:alpha(opacity=80)}}
+
+.Modal{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    /*top: -70%;*/
+    /*width: 200px;*/
+    z-index: 3000;/*99999;*/
+}
+.Modal .contOL{
+    padding-top: 5px;
+}
+.Notifications{display: block;margin-left: auto;margin-right: auto;position: relative;top: 0px;width: 300px;z-index: 5000;}
+.NotificationsIE{display: block;margin-left: auto;margin-right: auto;position: relative;top: 0px;width: 300px;z-index: 5000;}
+.Notification{
+    background: none repeat scroll 0 0 white;
+    box-shadow: 0 0 6px 0 #555555;
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top:0px;
+    font-size: 110%;
+    border-radius: 0px 0px 10px 10px;
+}
+
+/*Mensaje de inicio*/
+#msgIni{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 9999;
+}
+#msgIniBg{
+    
+}
+
+#imgBtnIni{
+	width: 592px;
+	height: 310px;
+	position: fixed;
+	top: 25%;
+	left: 25%;
+	
+	background-image: url('../img/mensajeEvalua.png');
+	background-repeat: no-repeat;
+}
+#btnActiveArea{
+	cursor: pointer;
+	float: left;
+	margin-top: 57px;
+	width: 100%;
+	height: 128px;
+}
+
+#btnCLoseMsgIni{
+	float: right;
+	margin-right: 19px;
+	margin-top: 14px;
+	cursor: pointer;
+}
+
+
+.step_option{float:left;border-bottom: 2px solid #DDDDDD;border-left: 2px solid #DDDDDD;border-right: 2px solid #DDDDDD;border-radius: 0px 0px 10px 10px;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px}
+._active{font-weight:bold;background:#DDDDDD;}
+
+
+
+/******************************************************************************************************/
+.rss{width:175px;}
+
+
+
+.p_rss{display:block;background-image:url(../img/georss/desastreIcons.png); background-repeat:no-repeat;overflow:hidden}
+	
+	.eq{background-position:0px 0px; width:40px; height:40px;}
+	.fl{background-position:-40px 0px; width:40px; height:40px;}
+	.ts{background-position:-80px 0px; width:40px; height:40px;}
+	.cl{background-position:-120px 0px; width:40px; height:40px;}
+	.vo{background-position:-160px 0px; width:40px; height:40px;}
+	
+        .eqm{background-position:-247px 0px; width:20px; height:20px;}
+	.flm{background-position:-267px 0px; width:20px; height:20px;}
+	.tsm{background-position:-287px 0px; width:20px; height:20px;}
+	.clm{background-position:-307px 0px; width:20px; height:20px;}
+	.vom{background-position:-327px 0px; width:20px; height:20px;}
+        .cum{background-position:-347px 0px; width:20px; height:20px;}
+    
+.p_rss{display:block;background-image:url(../projects/code/widgets/georss/css/georss.png); background-repeat:no-repeat;overflow:hidden}
+	.eqm{width:40px; height:40px; background-position:-160px -136px}
+	.flm{width:40px; height:40px; background-position:0px -136px}
+	.tsm{width:40px; height:40px; background-position:-41px -136px}
+	.clm{width:40px; height:40px; background-position:-119px -136px}
+	.vom{width:40px; height:40px; background-position:-80px -136px}
+	.information{width:20px; height:20px; background-position:-141px -177px}
+	.close{width:20px; height:20px; background-position:-121px -177px}
+	        
+        .Rssplus{background-position:-366px 0px; width:20px; height:20px;}
+        .Rsslink{background-position:-387px -1px; width:20px; height:20px;}
+	.sombra{display:block;background-image:url(../img/georss/rellenoSombra.png); background-repeat:repeat;overflow:hidden}
+        
+.dateRss{font-style:italic;background-color:#FFFFFF;color:black;border:1px solid #999}
+.dateRssInput{background-color:#eee;border:none;cursor:default}
+.dwrap{
+/*width: 20px;*/
+height: 20px;
+/*border: 1px solid #FF00FF;*/
+float: left;
+}
+.ubcRss{position:relative;top:0px}
+.secRss{background-color:#FFFFFF;color:black;font-size:12px}
+.rssTitle{background:#209E95;color:white;}
+.rssSlider{background:#F0F2F3;}
+.rssOdd{background:#FFF;border: 1px solid #D5D5D5;color:#565757}
+.rssOddi{background:#FFF;border: 1px solid #D5D5D5;color:#565757}
+.rssContent{background:#FFF}
+.sliderOption{background:#FFFFFF}
+.btngraph{background:white;border-top:1px solid #000000;border-left:1px solid #000000;border-right:1px solid #000000;}
+
+.fl{float: left;}
+.fr{float: right;}
+.pr{position: relative;}
+.pa{position:absolute;}
+.p10{top:10px;left:10px;right:10px;bottom:10px}
+.p5{top:5px;left:5px;right:5px;bottom:5px}
+.p2{top:2px;left:2px;right:2px;bottom:2px}
+.fullw{width:100%;}
+.fullh{height: 100%;}
+.pl10{padding-left:10px; }
+.invisible{
+    display: none;
+visibility: hidden;
+}
+
+.icons_rss{display:block;background-image:url(../img/georss/iconosCiudades.png);overflow:hidden}        
+.icon_btnRssNorm{background-position:-11px -285px; width:55px; height:55px;}
+.icon_btnRssInv{background-position:-74px -285px; width:55px; height:55px;}
+.icon_btnLupa{background-position:42px 0px; width:20px; height:20px;}
+.icon_link{background-position:21px 0px; width:20px; height:20px;}
+.geoRss{background-position:-2px -304px; height:30px;width:55px;}
+.lineRss{background:#FFF;}/*A2C99D*/
+.lineRssHover{background:white;}
+.icons_rss2{display:block;background-image:url(../img/georss/fenomenosIcons.png);overflow:hidden}
+.pointBuffer{background-position:157px -313px; height:22px;width:24px;}
+
+.t_even{background-color: #D8D8D8;color: black;}
+.t_odd{background-color: #D8D8D8;color: black;}
+
+.header_content .options{
+    position: absolute;
+    top:0px;
+    width:100%;
+    bottom:20px;
+    background: #F0F2F3;
+}
+.header_content .corner{
+    position: absolute;
+    left: 43%;
+    bottom: 0px;
+}
+
+.header_content .corner:before{
+        border-color:#F0F2F3 transparent;
+	border-style:solid;
+	border-width:20px 20px 0px;
+	bottom:0px;
+	content: "";
+	left:0px;
+	position: absolute;
+	width:0px;
+}
+#RowsRss{background: #F0F2F3;padding-top: 10px;}
+/*
+path {
+    fill: none;
+    stroke: #000;
+}
+*/
+#demo{/*
+    position: absolute;
+    top: 0px;left: 0px;width:500px;height: 500px;z-index: 5000;*/
+}
+#demo svg{
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+/**/
+
+circle.node {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+circle.node.directory {
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+circle.node.collapsed {
+  stroke: #555;
+}
+
+.nodetext {
+  fill: #252929;
+  font-weight: bold;
+  text-shadow: 0 0 0.2em white;
+}
+
+line.link {
+  fill: none;
+  stroke-width: 2.5px;
+}
+
+.nodeCount{
+  cursor: pointer;
+  fill: white;
+  font-weight: bold;
+  text-shadow: 0 0 0.2em #252929;
+}
+#nodo_title{
+    position: absolute;
+    z-index: 4000;
+    background: #FFFFFF;
+    padding: 8px;
+    max-width: 300px;
+    -webkit-box-shadow: 0 0 5px #aaa;
+    box-shadow: 0 0 5px #aaa;
+    border-width: 2px;
+    border-radius: 8px;
+    top:-200px;
+    left:-200px;
+}
+#nodos{
+  position: absolute;
+  z-index: 1900;
+}
+#background_nodes{
+     z-index: 1800;
+    position: absolute;
+    /*background: #FFFFFF;*/
+    background: #131313;
+    opacity: 0.65;
+    filter: Alpha(Opacity=65);
+    -webkit-border-radius: 200px;
+    border-radius: 200px;
+}
+#demo{
+  position: absolute;
+  top:0px;
+  left: 0px;
+  z-index: 1900;
+}
+#RowsRss{background: #F0F2F3;padding-top: 10px;}
+
+#coordinates_map{
+    bottom: 35px;
+    right: 100px;
+    width: 10px;
+    display: block;
+    position: absolute;
+    font-family: Arial;
+    font-size: 120%;
+    position: absolute;
+    z-index: 1003;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+}
+
+#coordinates_map .altitude{
+    position: absolute;
+    float: left;
+    top: -15px;
+    width: 140px;
+}
+
+#background_nodes_mirror{
+    position:absolute;z-index: 1800;opacity: 0.65;filter: Alpha(Opacity=65);display:none;
+}
+
+#nodos_mirror{
+    position:absolute;z-index: 1900;display: none;
+}
+.hidden_control{display:none;visibility:hidden}
+
+.infoLevel{
+    position:fixed;
+    top:autopx;
+    left:10px;
+    bottom:85px;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:8px 12px;
+
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(10px);
+
+    border:1px solid #d8e2e6;
+    border-radius:12px;
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,.12),
+        0 2px 6px rgba(0,0,0,.06);
+
+    font-family:"Segoe UI",sans-serif;
+}
+
+.infoLevel::before{
+    content:"\f279";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    color:#356b7d;
+    font-size:14px;
+}
+
+.infoLevel .label{
+    color:#75848b;
+    font-size:11px;
+    font-weight:600;
+}
+
+.infoLevel .level{
+    color:#356b7d;
+    font-size:14px;
+    font-weight:700;
+}
+
+@media only screen and (max-width: 767px) {
+    #main{
+        top:73px !important;
+    }
+}
+.beilBlockedMouseWeel{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 5000;
+    background: #7B7979;
+    opacity: 0.70;
+    filter: Alpha(Opacity=70);
+}
+.blockedMouseWeel{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 5001;
+    color: white;
+}
+.blockedMouseWeel .message{
+    color: white;
+    font-size: 200%;
+    width: 50%;
+    left: 25%;
+    top: 40%;
+    position: relative;
+    text-align: center;
+}
+
+/* ==========================================================
+   MODAL NUEVA GEORREFERENCIA 2.0
+   ========================================================== */
+
+.Georef-window{
+
+    position:absolute;
+
+    z-index:50000;
+
+    top:140px;
+
+    left:350px;
+}
+
+.Georef-container{
+
+    width:420px !important;
+
+    height:auto !important;
+
+    padding:20px !important;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.18);
+
+    border:1px solid #dce5ec;
+
+    overflow:visible;
+}
+
+/* ==========================================================
+   GEORREFERENCIA MODERNA MXSIG
+   ========================================================== */
+
+/* Ventana */
+
+.Georef-window{
+
+    position:absolute !important;
+
+    z-index:50000 !important;
+
+    top:140px !important;
+
+    left:50% !important;
+
+    transform:translateX(-50%);
+}
+
+/* Contenedor */
+
+.Georef-container{
+
+    width:460px !important;
+
+    height:auto !important;
+
+    padding:24px !important;
+
+    background:#ffffff !important;
+
+    border:1px solid #dce5ec !important;
+
+    border-radius:18px !important;
+
+    overflow:visible !important;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.18) !important;
+
+    box-sizing:border-box;
+}
+
+/* Título */
+
+.Georef-container h1,
+.Georef-container h2,
+.Georef-container h3,
+.Georef-container .title{
+
+    margin:0 0 18px 0 !important;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #e5edf3;
+
+    color:#233746 !important;
+
+    font-size:20px !important;
+
+    font-weight:700 !important;
+}
+
+/* Etiquetas */
+
+.Georef-container label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:#475569;
+
+    font-size:13px;
+
+    font-weight:600;
+}
+
+/* Inputs */
+
+.Georef-container .inputItem,
+.Georef-container .textAreaItem,
+.Georef-container .areaItem{
+
+    width:100% !important;
+
+    min-height:42px !important;
+
+    padding:10px 12px !important;
+
+    border:1px solid #dce5ec !important;
+
+    border-radius:12px !important;
+
+    background:#f8fafc !important;
+
+    color:#233746 !important;
+
+    font-size:14px !important;
+
+    font-family:Arial,sans-serif !important;
+
+    box-sizing:border-box !important;
+
+    transition:all .2s ease !important;
+}
+
+/* Focus */
+
+.Georef-container .inputItem:focus,
+.Georef-container .textAreaItem:focus,
+.Georef-container .areaItem:focus{
+
+    outline:none !important;
+
+    border-color:#0078d4 !important;
+
+    background:#ffffff !important;
+
+    box-shadow:
+        0 0 0 3px rgba(0,120,212,.10) !important;
+}
+
+/* Área descripción */
+
+.Georef-container textarea,
+.Georef-container .textAreaItem{
+
+    min-height:120px !important;
+
+    resize:vertical !important;
+}
+
+/* Botón principal */
+
+.Georef-container button,
+.Georef-container .ui-button{
+
+    min-height:42px !important;
+
+    padding:0 18px !important;
+
+    margin:16px auto 0 auto !important;
+
+    border:none !important;
+
+    border-radius:12px !important;
+
+    background:#0078d4 !important;
+
+    color:#ffffff !important;
+
+    font-size:14px !important;
+
+    font-weight:600 !important;
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    gap:8px;
+
+    cursor:pointer;
+
+    transition:all .2s ease !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.25);
+}
+
+/* Hover */
+
+.Georef-container button:hover,
+.Georef-container .ui-button:hover{
+
+    transform:translateY(-2px);
+
+    background:#005fa8 !important;
+
+    box-shadow:
+        0 8px 20px rgba(0,120,212,.30);
+}
+
+/* ==========================================================
+   BOTON ACEPTAR GEOREFERENCIA
+   MISMO ESTILO QUE IMPORTAR / EXPORTAR
+   ========================================================== */
+
+.Georef-container button,
+.Georef-container .ui-button {
+
+    min-height: 42px !important;
+
+    padding: 8px 12px !important;
+
+    border-radius: 12px !important;
+
+    border: 1px solid #dce5ec !important;
+
+    background: #f8fafc !important;
+
+    color: #475569 !important;
+
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+
+    box-shadow: none !important;
+
+    transition: all .20s ease !important;
+
+    cursor: pointer;
+}
+
+/* Hover */
+
+.Georef-container button:hover,
+.Georef-container .ui-button:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #0078d4 !important;
+
+    color: #0078d4 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.15) !important;
+}
+
+/* Click */
+
+.Georef-container button:active,
+.Georef-container .ui-button:active {
+
+    background: #0078d4 !important;
+
+    border-color: #0078d4 !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.30) !important;
+}
+/* ==========================================================
+   BOTON ACEPTAR GEOREFERENCIA
+   MISMO ESTILO QUE IMPORTAR Y EXPORTAR
+   ========================================================== */
+
+.Georef-container .ui-button{
+
+    min-height:42px !important;
+
+    padding:8px 12px !important;
+
+    border-radius:12px !important;
+
+    border:1px solid #dce5ec !important;
+
+    background:#f8fafc !important;
+
+    color:#475569 !important;
+
+    font-size:13px !important;
+
+    font-weight:600 !important;
+
+    box-shadow:none !important;
+
+    transition:all .20s ease !important;
+
+    cursor:pointer;
+
+    margin:10px auto 0 auto !important;
+}
+
+/* Hover */
+
+.Georef-container .ui-button:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#0078d4 !important;
+
+    color:#0078d4 !important;
+
+    background:#ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.15) !important;
+}
+
+/* Click */
+
+.Georef-container .ui-button:active{
+
+    background:#0078d4 !important;
+
+    border-color:#0078d4 !important;
+
+    color:#ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.30) !important;
+}
+
+/* ==========================================================
+   BOTONES GEOREFERENCIA
+   ACEPTAR Y CALCULAR
+   ========================================================== */
+
+#geo_btn_add,
+#geo_btn_add_buff{
+
+    min-height:42px !important;
+
+    padding:8px 12px !important;
+
+    border-radius:12px !important;
+
+    border:1px solid #dce5ec !important;
+
+    background:#f8fafc !important;
+
+    color:#475569 !important;
+
+    font-size:13px !important;
+
+    font-weight:600 !important;
+
+    box-shadow:none !important;
+
+    transition:all .20s ease !important;
+
+    cursor:pointer;
+
+    margin:10px auto 0 auto !important;
+}
+
+/* Hover */
+
+#geo_btn_add:hover,
+#geo_btn_add_buff:hover{
+
+    transform:translateY(-2px);
+
+    border-color:#0078d4 !important;
+
+    color:#0078d4 !important;
+
+    background:#ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.15) !important;
+}
+
+/* Click */
+
+#geo_btn_add:active,
+#geo_btn_add_buff:active{
+
+    background:#0078d4 !important;
+
+    border-color:#0078d4 !important;
+
+    color:#ffffff !important;
+
+    box-shadow:
+        0 4px 14px rgba(0,120,212,.30) !important;
+}
+
+/* Ocultar iconos jQuery UI */
+
+#geo_btn_add .ui-icon,
+#geo_btn_add_buff .ui-icon{
+
+    display:none !important;
+}
+
+#geo_btn_add .ui-button-icon-space,
+#geo_btn_add_buff .ui-button-icon-space{
+
+    display:none !important;
+}

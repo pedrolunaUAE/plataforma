@@ -1,0 +1,1373 @@
+.layerManager-sprite{float:left;}
+*:focus {
+    outline: 0;
+}
+.custom-layerManager{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 28px;
+    background-color: #FFF;
+    z-index: 2000;
+}
+/*.layerManager-timeBtn{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 28px;
+    background-color: #FFF;
+    cursor: pointer;
+}
+.layerManager-timeBtn span{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}*/
+.layerManager-miniMap-box{
+   position: absolute;
+   right: -1px;
+   bottom: -1px;
+   width: 230px;
+   height: 135px;
+   overflow: hidden;
+   
+   background-color: #FFF;
+   border-left: 1px solid #DDD;
+   border-top: 1px solid #DDD;
+}
+.layerManager-miniMap{
+    position: absolute;
+    top: 18px;
+    width: 190px;
+    right: 5px;
+    bottom: 5px;
+}
+.layerManager-miniMap-leftLine{
+   position: absolute;
+   top: 0px;
+   bottom: 0px;
+   right: 229px;
+   width: 7px;
+   background-color: #FFF;
+   background-size: cover;
+}
+.layerManager-h-container{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 310px;
+	height: 28px;
+	overflow-y: hidden;
+}
+.layerManager-btnLayers{
+    bottom: 28px;
+    left: 3px;
+    position: absolute;
+    top: 53px;
+    width: 30px;
+	cursor: pointer;
+}
+.layerManager-btnLayers .layerManager-iconLayers-m{
+    position: absolute;
+	top: 8px;
+	left: 0px;
+}
+.layerManager-btnLayers-selection{
+	position: absolute;
+	right: 18px;
+	left: 2px;
+	top: 1px;
+	bottom: 1px;
+	text-align: center;
+}
+.layerManager-btnLayersConf{
+    display:none;
+    cursor: pointer;
+    height: 29px;
+    left: 3px;
+    position: absolute;
+    top: 22px;
+    width: 30px;
+}
+.layerManager-btnLayersConf:hover{
+	background-color: #EEE;
+}
+.layerManager-btnLayersConf .layerManager-iconGears{
+	position: absolute;
+	top: 1px;left: 2px;
+}
+
+.layerManager-miniMap-box .layerManager-btnCollapse{
+	cursor: pointer;
+    height: 15px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 16px;
+}
+.layerManager-btnBaseLayer{
+    cursor: pointer;
+    height: 15px;
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    width: 180px;
+}
+.layerManager-btnBaseLayer:hover{
+	background-color: #EEEEEE;
+}
+.layerManager-btnBaseLayer .layerManager-iconOptions{
+	float: right !important;
+}
+
+
+/* bottom Carrucel ---------------------------------------*/
+layerManager_h_c_item_img img{
+    
+}
+.layerManager-h-dataContainer{
+    position: absolute;
+}
+.layerManager_h_content{
+	border-left: 1px solid #CCC;
+	border-top: 1px solid #CCC;
+	/*border-right: 1px solid #CCC;*/
+    bottom: -1px;
+    height: 136px;
+    left: 28px;
+    position: absolute;
+    right: 28px;
+	overflow: hidden;
+}
+.layerManager_h_btnLeft{
+	border: 1px solid #CCC;
+    bottom: 28px;
+    height: 106px;
+    left: 0px;
+    position: absolute;
+    width: 28px;
+	cursor: pointer;
+}
+.layerManager_h_btnLeft span{position: absolute;top: 38px;}
+.layerManager_h_btnLeft:hover{
+	background-color: #BBB;
+}
+
+.layerManager_h_btnRight{
+	border: 1px solid #CCC;
+    bottom: 28px;
+    height: 106px;
+    right: 0px;
+    position: absolute;
+    width: 27px;
+	cursor: pointer;
+}
+
+.layerManager_h_btnRight span{position: absolute;top: 38px;}
+.layerManager_h_btnRight:hover{
+	background-color: #BBB;
+}
+
+.layerManager_h_c_slider{
+ height: 136px;
+ position: absolute;
+ left: 0px;
+}
+.layerManager_h_c_item{
+	float: left;
+	display: inline-block;
+	cursor: pointer;
+	width: 170px;
+    height: 135px;
+	border-left: 1px solid #CCC;
+}
+.layerManager_h_c_item:hover{
+	background-image: url(bg_b_20.png)
+}
+
+.layerManager_h_c_item:last-child{border-right: 1px solid #CCC;}
+
+.layerManager_h_c_item_img{
+	width: 170px;
+    height: 106px;
+    padding-left: 3px;
+    padding-top: 3px;
+	overflow:hidden;
+}
+.layerManager_h_c_item_label{
+    height: 26px;
+    margin-top: 2px;
+    padding-top: 6px;
+    width: 170px;
+	text-align: center;
+}
+/*Right Carrucel -------------------------------------------*/
+.layerManager-v-container{
+	position: absolute;
+	right: 0px;
+	bottom: 137px;
+	top: 0px;
+	width: 0px; /*231*/
+	border-left: 1px solid #DDD;
+	overflow: hidden;
+    z-index: 2000;
+}
+.layerManager_v_btnTop{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 28px;
+	right: 0px;
+	text-align: center;
+	cursor: pointer;
+}
+.layerManager_v_btnTop span{
+	margin-left: 45%;
+}
+.layerManager_v_btnBottom{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 28px;
+	right: 0px;
+	text-align: center;
+	cursor: pointer;
+}
+.layerManager_v_btnBottom span{
+	margin-left: 45%;
+}
+.layerManager_v_content{
+    background-image: url(bg_b_20.png);
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 28px;
+	bottom: 28px;
+	overflow: hidden;
+}
+.layerManager_v_c_item{
+	width: 230px;
+    height: 140px;
+    float: left;
+    display: block;
+    cursor: pointer;
+    padding-top: 3px;
+    background-color: #FFF;
+}
+.layerManager_v_c_item_img{
+	width:230px;
+	height: 118px;
+	float:left;
+}
+.layerManager_v_c_item_img img{
+    width: 230px;
+}
+.layerManager-v-dataContainer{
+    position: absolute;
+}
+.layerManager-hoverSelection{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.layerManager-hoverSelection:hover{
+    width: 100%;
+    height: 100%;
+    background-image: url(bg_b_20.png);
+}
+.layerManager_v_c_item_label{
+	padding-top: 2px;
+    width:230px;
+	height: 16px;
+	float:left;
+	text-align: center;
+	background-color: #FFF;
+}
+.layerManager_v_c_slider{
+	width: 230px;
+	position: absolute;
+	left: 0px;
+}
+/* Collapsed tools ----------------------------------------*/
+.layerManager-collapsedTools{
+    position:absolute;
+    right:18px;
+    bottom:12px;
+    width:auto;
+    height:auto;
+    overflow:visible;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+}
+.layerManager-iconCollapse{
+	float:left;	
+}
+.layerManager-collapsedTools .layerManager-sprite,.layerManager-miniMap-box .layerManager-sprite{
+	float:left;	
+}
+.layerManager-btnCollapse_c{
+    width:50px !important;
+    height:50px !important;
+    border-radius:14px 14px 5px 5px;
+    background:rgba(255,255,255,.96);
+    border:1px solid #d4dee2;
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.15);
+}
+.layerManager-btnLayersConf_c{
+    display:none;
+	width: 28px;
+	height: 28px;
+	float: left;
+	cursor: pointer;
+}
+.layerManager-btnLayers_c{
+    width:50px !important;
+    height:50px !important;
+    border-radius:14px 14px 5px 5px;
+    background:rgba(255,255,255,.96);
+    border:1px solid #d4dee2;
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.15);
+    transition:.15s ease;
+}
+.layerManager-btnLayers_c[empty=true]{
+	opacity:0.5;	
+}
+.layerManager_baseMapBox{
+    height:50px;
+    min-width:280px;
+    max-width:360px;
+    display:flex;
+    align-items:center;
+    padding:0 42px !important;
+    background:rgba(255,255,255,.96);
+    border:1px solid #d4dee2 !important;
+    border-radius:14px 14px 5px 5px;
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.15);
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+    font-size:13px;
+    font-weight:650;
+    color:#29434e;
+    transition:.15s ease;
+}
+/*Colors --------------------------------------------------*/
+.layerManager-color-b-90{background-image: url(bg_b_90.png)}
+.layerManager-color-b-80{background-image: url(bg_b_80.png)}
+.layerManager-color-b-60{background-image: url(bg_b_60.png)}
+.layerManager-color-b-40{background-image: url(bg_b_40.png)}
+.layerManager-color-b-20{background-image: url(bg_b_20.png)}
+
+/* Styles ----------------------------------------------- */
+.layerManager-closed-h{ height: 0px;}
+.layerManager-hidde{display: none;}
+.layerManager-border{
+    border: solid 1px #DDD;
+}
+.layerManager-inputText{
+    background-color: transparent;
+    border: 1px solid #DDDDDD;
+    color: #555555;
+    font-size: 120%;
+    height: 23px;
+    overflow: hidden;
+    position: absolute;
+    right: 45px;
+    top: 5px;
+    width: 328px;
+    padding-left: 3px;
+}
+.layerManager-inset-focus:focus{
+    -moz-box-shadow: inset 1px 1px 2px 0px #999;
+    -webkit-box-shadow: inset 1px 1px 2px 0px #999;
+    box-shadow: inset 1px 1px 2px 0px #999;
+}
+.layerManager-shadow{
+   -moz-box-shadow:    1px 1px 2px 0px #555;
+   -webkit-box-shadow: 1px 1px 2px 0px #555;
+   box-shadow:         1px 1px 2px 0px #555;
+   
+   /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#555555');
+   
+}
+
+.layerManager-shadow-n{
+   -moz-box-shadow:    0 -1px 4px 0 #999999;
+   -webkit-box-shadow: 0 -1px 4px 0 #999999;
+   box-shadow:         0 -1px 4px 0 #999999;
+   
+   /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=270, Color='#999999')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=270, Color='#999999');
+   
+}
+
+.layerManager-shadow-inset{
+   -moz-box-shadow: inset 1px 1px 2px 0px #999;
+   -webkit-box-shadow: inset 1px 1px 2px 0px #999;
+   box-shadow: inset 1px 1px 2px 0px #999;
+}
+.layerManager-transition{
+    webkit-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -o-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -moz-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -ms-transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+    -kthtml-transition: all 0.4s lcubic-bezier(0.52,0,0.48,1);
+    transition: all 0.4s cubic-bezier(0.52,0,0.48,1);
+}
+.layerManager-box-sizing{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* control de despliegue de elementos en particular  ---------------*/
+.custom-layerManager.hideBaseMap .layerManager_baseMapBox{
+	display: none;
+}
+.custom-layerManager.hideBaseMap .layerManager-btnLayersConf_c{
+	display: none;
+}
+
+/* ========================================================================== 
+   LAYER MANAGER - PESTANAS FLOTANTES DE TEMAS
+   Compatible con jquery.ui.layerManager.tabs.js
+   ========================================================================== */
+
+/* El carrusel conserva su logica, pero visualmente flota sobre el mapa. */
+.layerManager-h-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    overflow: visible !important;
+    pointer-events: none;
+}
+
+.layerManager_h_content {
+    left: 36px;
+    right: 36px;
+    bottom: 8px;
+    height: 68px;
+    padding: 8px 4px 4px;
+    overflow: hidden;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    pointer-events: auto;
+}
+
+.layerManager_h_c_slider.layerManager-floatingTabs {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 58px !important;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+.layerManager_h_c_item.layerManager-floatingTab {
+    float: none !important;
+    display: block;
+    flex: 0 0 182px;
+    width: 182px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    cursor: pointer;
+    outline: none;
+    transition: transform .16s ease, filter .16s ease;
+}
+
+.layerManager_h_c_item.layerManager-floatingTab:hover,
+.layerManager_h_c_item.layerManager-floatingTab:focus-visible {
+    transform: translateY(-4px);
+    filter: drop-shadow(0 6px 7px rgba(0, 0, 0, .16));
+}
+
+.layerManager-floatingTab .layerManager-h-dataContainer {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 13px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .96);
+    border: 1px solid #d4dee2;
+    border-radius: 14px 14px 5px 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+
+.layerManager-floatingTab .layerManager-themeIcon {
+    position: static !important;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    border-radius: 50%;
+    color: #23647b;
+    background: #e5f2f5;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    pointer-events: none;
+}
+
+.layerManager-floatingTab .layerManager_h_c_item_label {
+    float: none !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    overflow: hidden;
+    color: #29434e;
+    background: transparent !important;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 16px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.layerManager-floatingTab.layerManager-themeSelected .layerManager-h-dataContainer {
+    color: #fff;
+    background: linear-gradient(135deg, #244f60, #3f7d91);
+    border-color: #244f60;
+    box-shadow: 0 5px 14px rgba(36, 79, 96, .28);
+}
+
+.layerManager-floatingTab.layerManager-themeSelected .layerManager-themeIcon {
+    color: #244f60;
+    background: #fff;
+}
+
+.layerManager-floatingTab.layerManager-themeSelected .layerManager_h_c_item_label {
+    color: #fff;
+}
+
+/* Flechas discretas y flotantes. */
+.layerManager_h_btnLeft,
+.layerManager_h_btnRight {
+    bottom: 13px;
+    width: 30px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: auto;
+    border: 1px solid #d4dee2 !important;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .95) !important;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .13);
+    cursor: pointer;
+}
+
+.layerManager_h_btnLeft {
+    left: 2px;
+}
+
+.layerManager_h_btnRight {
+    right: 2px;
+}
+
+.layerManager_h_btnLeft span,
+.layerManager_h_btnRight span {
+    position: static !important;
+    margin: 0 !important;
+}
+
+.layerManager_h_btnLeft:hover,
+.layerManager_h_btnRight:hover {
+    background: #eaf3f5 !important;
+}
+
+/* Las miniaturas antiguas ya no se generan, pero se ocultan por compatibilidad. */
+.layerManager_h_c_item_img,
+.layerManager-h-hoverSelection {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+    .layerManager_h_c_item.layerManager-floatingTab {
+        flex-basis: 158px;
+        width: 158px !important;
+    }
+
+    .layerManager-floatingTab .layerManager-h-dataContainer {
+        padding: 6px 10px;
+        gap: 7px;
+    }
+
+    .layerManager-floatingTab .layerManager-themeIcon {
+        flex-basis: 27px;
+        width: 27px;
+        height: 27px;
+        font-size: 13px !important;
+    }
+}
+
+/* ========================================================================== 
+   MAPAS BASE EN COLUMNA VERTICAL FLOTANTE
+   Conserva el panel derecho y el efecto de deslizamiento.
+   ========================================================================== */
+
+/* Panel lateral derecho. Se abre con la animacion width existente. */
+.layerManager-v-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 30px;
+    width: 0;
+    overflow: hidden;
+    border: 0 !important;
+    background: transparent;
+    box-shadow: none !important;
+    z-index: 2000;
+}
+
+/* Area visible de las tarjetas. */
+.layerManager_v_content {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: 34px;
+    left: 0;
+    padding: 8px 8px 8px 18px;
+    overflow: hidden;
+    background: rgba(244, 248, 249, .74) !important;
+    background-image: none !important;
+    border-radius: 14px 0 0 14px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-sizing: border-box;
+}
+
+/* El slider permanece vertical para conservar scrollRightCarrucel(). */
+.layerManager_v_c_slider {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    width: 204px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px 0 12px;
+    box-sizing: border-box;
+}
+
+/* Tarjeta compacta de mapa base. */
+.layerManager_v_c_item {
+    position: relative;
+    float: none !important;
+    display: block;
+    flex: 0 0 124px;
+    width: 196px !important;
+    height: 124px !important;
+    margin: 0;
+    padding: 0 !important;
+    overflow: visible;
+    background: transparent !important;
+    cursor: pointer;
+    transform-origin: right center;
+    transition:
+        transform .18s ease,
+        filter .18s ease,
+        opacity .18s ease;
+}
+
+.layerManager-v-dataContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #d4dee2;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .13);
+    box-sizing: border-box;
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+}
+
+.layerManager_v_c_item_img {
+    float: none !important;
+    width: 100% !important;
+    height: 94px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    border: 0 !important;
+    background-image: none !important;
+}
+
+.layerManager_v_c_item_img img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform .22s ease;
+}
+
+.layerManager_v_c_item_label {
+    float: none !important;
+    width: 100% !important;
+    height: 30px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 8px !important;
+    overflow: hidden;
+    color: #29434e;
+    background: #fff !important;
+    border-top: 1px solid #edf1f3;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 650;
+    line-height: 14px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+/* La cubierta original conserva el clic, sin tapar el efecto visual. */
+.layerManager-hoverSelection {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: transparent !important;
+}
+
+/* Efecto slide: la tarjeta se desplaza hacia el mapa y crece suavemente. */
+.layerManager_v_c_item:hover,
+.layerManager_v_c_item:focus-within {
+    transform: translateX(-13px) scale(1.045);
+    filter: drop-shadow(0 7px 8px rgba(0, 0, 0, .18));
+    z-index: 20;
+}
+
+.layerManager_v_c_item:hover .layerManager_v_c_item_img img {
+    transform: scale(1.04);
+}
+
+/* Mapa base actualmente seleccionado. */
+.layerManager_v_c_item.layerManager-baseSelected {
+    transform: translateX(-9px);
+    z-index: 15;
+}
+
+.layerManager-baseSelected .layerManager-v-dataContainer {
+    border: 2px solid #2f7188;
+    box-shadow:
+        0 0 0 3px rgba(47, 113, 136, .16),
+        0 5px 13px rgba(0, 0, 0, .16);
+}
+
+.layerManager-baseSelected .layerManager_v_c_item_label {
+    color: #fff;
+    background: linear-gradient(135deg, #244f60, #3f7d91) !important;
+    border-top-color: #244f60;
+}
+
+/* Controles superior e inferior del desplazamiento vertical. */
+.layerManager_v_btnTop,
+.layerManager_v_btnBottom {
+    position: absolute;
+    right: 8px;
+    left: 18px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #315966;
+    background: rgba(255, 255, 255, .96) !important;
+    border: 1px solid #d4dee2;
+    border-radius: 10px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .10);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.layerManager_v_btnTop {
+    top: 2px;
+}
+
+.layerManager_v_btnBottom {
+    bottom: 2px;
+}
+
+.layerManager_v_btnTop span,
+.layerManager_v_btnBottom span {
+    margin: 0 !important;
+}
+
+.layerManager_v_btnTop:hover,
+.layerManager_v_btnBottom:hover {
+    background: #e8f2f5 !important;
+}
+
+@media (max-width: 700px) {
+    .layerManager_v_content {
+        padding-left: 34px;
+    }
+
+    .layerManager_v_c_slider {
+        left: 34px;
+        width: 184px !important;
+    }
+
+    .layerManager_v_c_item {
+        width: 176px !important;
+        height: 112px !important;
+        flex-basis: 112px;
+    }
+
+    .layerManager_v_c_item_img {
+        height: 84px !important;
+    }
+
+    .layerManager_v_c_item_label {
+        height: 28px !important;
+    }
+}
+
+/* ==========================================================================
+   CUSTOM LAYER MANAGER MODERNO
+   Barra compacta para capas activas, mapa base y controles
+   ========================================================================== */
+
+/*
+ * Evita la línea blanca a todo lo ancho.
+ * El widget conserva su posición inferior, pero deja de dibujar fondo.
+ */
+.mdm-ui-widget.custom-layerManager,
+.custom-layerManager{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    height:28px;
+
+    background:transparent !important;
+
+    z-index:2000;
+
+    border:none !important;
+
+    box-shadow:none !important;
+}
+
+/* Permitir interacción en los controles internos */
+.custom-layerManager >,
+.custom-layerManager .layerManager-collapsedTools,
+.custom-layerManager .layerManager-miniMap-box,
+.custom-layerManager .layerManager-h-container {
+    pointer-events: auto;
+}
+
+/* ==========================================================================
+   BARRA COMPACTA
+   ========================================================================== */
+
+.layerManager-collapsedTools {
+    position: absolute;
+    right: 0;
+    /*top: 0;*/
+
+    width: auto;
+    min-width: 215px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 4px 6px;
+
+    overflow: visible;
+
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #d4dee2;
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-sizing: border-box;
+    z-index: 3010;
+}
+
+/* ==========================================================================
+   BOTONES COMUNES
+   ========================================================================== */
+
+.layerManager-btnCollapse_c,
+.layerManager-btnLayers_c,
+.layerManager-btnLayersConf_c {
+    position: relative;
+
+    float: none !important;
+    flex: 0 0 32px;
+
+    width: 32px !important;
+    height: 32px !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 !important;
+    padding: 0;
+
+    overflow: hidden;
+
+    color: #315966;
+    background: #f4f8f9;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.16s ease,
+        border-color 0.16s ease,
+        color 0.16s ease,
+        transform 0.16s ease;
+
+    box-sizing: border-box;
+}
+
+/* El control de configuración permanece oculto si así lo requiere el proyecto */
+.layerManager-btnLayersConf_c {
+    display: none !important;
+}
+
+.layerManager-btnCollapse_c:hover,
+.layerManager-btnLayers_c:hover,
+.layerManager-btnLayersConf_c:hover {
+    color: #1f566b;
+    background: #e6f1f4;
+    border-color: #bdd2da;
+
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   SUSTITUIR SPRITES ANTIGUOS POR FONT AWESOME
+   ========================================================================== */
+
+.layerManager-btnCollapse_c .layerManager-sprite,
+.layerManager-btnLayers_c .layerManager-sprite,
+.layerManager-btnLayersConf_c .layerManager-sprite {
+    display: none !important;
+}
+
+/* Contraer o desplegar */
+.layerManager-btnCollapse_c::before {
+    content: "\f078";
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Capas activas */
+.layerManager-btnLayers_c::before {
+    content: "\f5fd";
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Configuración de capas */
+.layerManager-btnLayersConf_c::before {
+    content: "\f1de";
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   ESTADO DEL BOTÓN DE CAPAS ACTIVAS
+   ========================================================================== */
+
+.layerManager-btnLayers_c[empty="true"] {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.layerManager-btnLayers_c[empty="false"],
+.layerManager-btnLayers_c:not([empty]) {
+    opacity: 1;
+}
+
+/* Indicador cuando existen capas activas */
+.layerManager-btnLayers_c[empty="false"]::after,
+.layerManager-btnLayers_c:not([empty])::after {
+    content: "";
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    width: 7px;
+    height: 7px;
+
+    background: #28a66a;
+    border: 2px solid #fff;
+    border-radius: 50%;
+
+    box-sizing: content-box;
+}
+
+/* ==========================================================================
+   ETIQUETA DEL MAPA BASE
+   ========================================================================== */
+
+.layerManager_baseMapBox {
+    position: relative;
+
+    float: none !important;
+    flex: 1 1 auto;
+
+    min-width: 130px;
+    max-width: 210px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+
+    margin: 0 !important;
+    padding: 0 34px 0 34px !important;
+
+    overflow: hidden;
+
+    color: #334a54;
+    background: #f7f9fa;
+
+    border: 1px solid #dce4e7 !important;
+    border-radius: 8px !important;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 14px;
+
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.16s ease,
+        border-color 0.16s ease;
+
+    box-sizing: border-box;
+}
+
+.layerManager_baseMapBox:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 6px 14px rgba(0,0,0,.18);
+    border-color:#b8ced7 !important;
+}
+
+/* Icono de mapa */
+.layerManager_baseMapBox::before {
+    content: "\f279";
+
+    position: absolute;
+    left: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    color: #2f7188;
+    font-size: 15px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* Flecha del selector */
+.layerManager_baseMapBox::after {
+    content: "\f106";
+
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    color: #607982;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   PANEL ABIERTO CON MINIMAPA
+   ========================================================================== */
+
+.layerManager-miniMap-box {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 230px;
+    height: 135px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid #d4dee2 !important;
+    border-radius: 14px 14px 0 14px;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.17);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-sizing: border-box;
+    z-index: 3020;
+}
+
+.layerManager-miniMap {
+    position: absolute;
+    top: 22px;
+    right: 7px;
+    bottom: 7px;
+
+    width: 188px;
+
+    overflow: hidden;
+
+    border: 1px solid #dce4e7;
+    border-radius: 9px;
+
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   CONTROLES DEL PANEL EXPANDIDO
+   ========================================================================== */
+
+.layerManager-miniMap-box .layerManager-btnCollapse,
+.layerManager-btnBaseLayer,
+.layerManager-btnLayers {
+    cursor: pointer;
+}
+
+.layerManager-miniMap-box .layerManager-btnCollapse {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 7px;
+}
+
+.layerManager-btnBaseLayer {
+    position: absolute;
+    top: 3px;
+    right: 6px;
+
+    width: 188px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 30px 0 10px;
+
+    color: #334a54;
+    background: #f7f9fa;
+
+    border-radius: 7px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+.layerManager-btnBaseLayer:hover {
+    background: #eaf3f5;
+}
+
+/* ==========================================================================
+   ACCESO A CAPAS ACTIVAS EN PANEL EXPANDIDO
+   ========================================================================== */
+
+.layerManager-btnLayers {
+    position: absolute;
+    top: 54px;
+    bottom: auto;
+    left: 3px;
+
+    width: 31px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #315966;
+    background: #f4f8f9;
+
+    border: 1px solid #dbe4e7;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+}
+
+.layerManager-btnLayers:hover {
+    color: #1f566b;
+    background: #e6f1f4;
+    border-color: #bdd2da;
+}
+
+.layerManager-btnLayers .layerManager-sprite {
+    display: none !important;
+}
+
+.layerManager-btnLayers::before {
+    content: "\f5fd";
+
+    font-family:
+        "Font Awesome 6 Free",
+        "Font Awesome 5 Free",
+        Arial,
+        sans-serif;
+
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   EVITAR LA ANTIGUA LÍNEA BLANCA
+   ========================================================================== */
+
+.layerManager-miniMap-leftLine {
+    display: none !important;
+}
+
+/*
+ * El carrusel de temas conserva su posición independiente.
+ * No se vuelve a aplicar fondo blanco al contenedor principal.
+ */
+.custom-layerManager .layerManager-h-container {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS
+   ========================================================================== */
+
+@media (max-width: 700px) {
+    .layerManager-collapsedTools {
+        min-width: 190px;
+    }
+
+    .layerManager_baseMapBox {
+        min-width: 105px;
+        max-width: 145px;
+
+        padding-right: 28px !important;
+        padding-left: 30px !important;
+
+        font-size: 10px;
+    }
+
+    .layerManager_baseMapBox::before {
+        left: 8px;
+        font-size: 13px;
+    }
+
+    .layerManager_baseMapBox::after {
+        right: 8px;
+    }
+}

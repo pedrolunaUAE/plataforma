@@ -1,0 +1,99 @@
+/* Scroll general para Leyenda y Leyendas raster */
+#mdm6DinamicPanel_leyendToolPanel .toolPanel-body,
+#mdm6DinamicPanel_rasterLegendToolPanel .toolPanel-body {
+  overflow: hidden;
+}
+
+#mdm6DinamicPanel_leyendPanel,
+#mdm6DinamicPanel_rasterLegendPanel {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 205px);
+  padding-right: 5px;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #68a9c1 #edf3f6;
+}
+
+#mdm6DinamicPanel_leyendPanel::-webkit-scrollbar,
+#mdm6DinamicPanel_rasterLegendPanel::-webkit-scrollbar {
+  width: 9px;
+}
+
+#mdm6DinamicPanel_leyendPanel::-webkit-scrollbar-track,
+#mdm6DinamicPanel_rasterLegendPanel::-webkit-scrollbar-track {
+  background: #edf3f6;
+  border-radius: 10px;
+}
+
+#mdm6DinamicPanel_leyendPanel::-webkit-scrollbar-thumb,
+#mdm6DinamicPanel_rasterLegendPanel::-webkit-scrollbar-thumb {
+  background: #68a9c1;
+  border: 2px solid #edf3f6;
+  border-radius: 10px;
+}
+
+/* Grupos y subgrupos colapsables */
+.dinamicPanel-vectorGroupTitle,
+.dinamicPanel-rasterGroupTitle,
+.dinamicPanel-vectorThemeTitle,
+.dinamicPanel-rasterThemeTitle {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dinamicPanel-vectorGroupTitle,
+.dinamicPanel-rasterGroupTitle {
+  padding-left: 31px !important;
+}
+
+.dinamicPanel-vectorThemeTitle,
+.dinamicPanel-rasterThemeTitle {
+  padding-left: 23px !important;
+}
+
+.dinamicPanel-legendChevron {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-65%) rotate(45deg);
+  transition: transform .16s ease;
+}
+
+.dinamicPanel-vectorThemeTitle .dinamicPanel-legendChevron,
+.dinamicPanel-rasterThemeTitle .dinamicPanel-legendChevron {
+  left: 6px;
+}
+
+.dinamicPanel-vectorGroup[data-open="false"] > .dinamicPanel-vectorGroupTitle .dinamicPanel-legendChevron,
+.dinamicPanel-rasterGroup[data-open="false"] > .dinamicPanel-rasterGroupTitle .dinamicPanel-legendChevron,
+.dinamicPanel-vectorThemeTitle[data-open="false"] .dinamicPanel-legendChevron,
+.dinamicPanel-rasterThemeTitle[data-open="false"] .dinamicPanel-legendChevron {
+  transform: translateY(-45%) rotate(-45deg);
+}
+
+.dinamicPanel-legendThemeContent {
+  display: block;
+}
+
+.dinamicPanel-vectorGroupTitle:focus,
+.dinamicPanel-rasterGroupTitle:focus,
+.dinamicPanel-vectorThemeTitle:focus,
+.dinamicPanel-rasterThemeTitle:focus {
+  outline: 2px solid rgba(94, 177, 207, .55);
+  outline-offset: -2px;
+}
+
+@media (max-height: 650px) {
+  #mdm6DinamicPanel_leyendPanel,
+  #mdm6DinamicPanel_rasterLegendPanel {
+    max-height: calc(100vh - 165px);
+  }
+}

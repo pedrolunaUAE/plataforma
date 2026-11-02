@@ -1,0 +1,116 @@
+/* Franja de los cuadernillos. El mapa sigue recibiendo los clics. */
+
+header,
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 64px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #AF1D4E !important;
+    background-color: #AF1D4E !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.iplanay-banda {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 18px;
+    height: 64px;
+    margin: 0;
+    /* Buscador a la izquierda y herramientas a la derecha, encima de la franja. */
+    padding: 0 240px 0 408px;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.iplanay-marca {
+    display: block;
+    height: 50px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.iplanay-titulo {
+    min-width: 0;
+    color: #fff;
+    font-family: Montserrat, "Segoe UI", Arial, sans-serif;
+    text-align: center;
+    line-height: 1.15;
+    pointer-events: none;
+}
+
+.iplanay-titulo-nombre {
+    display: block;
+    font-size: clamp(13px, 1.15vw, 20px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.iplanay-titulo-anio {
+    display: block;
+    margin-top: 1px;
+    font-size: clamp(12px, 0.95vw, 16px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+}
+
+@media only screen and (max-width: 1280px) {
+    .iplanay-marca {
+        height: 44px;
+    }
+}
+
+@media only screen and (max-width: 1180px) {
+    .iplanay-banda {
+        column-gap: 10px;
+        padding-left: 12px;
+        padding-right: 240px;
+    }
+
+    .iplanay-marca {
+        height: 40px;
+    }
+
+    .custom-dinamicPanel {
+        top: 72px !important;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    header,
+    .header,
+    .iplanay-banda {
+        height: 56px;
+    }
+
+    .iplanay-banda {
+        column-gap: 8px;
+        padding-right: 200px;
+    }
+
+    .iplanay-marca {
+        height: 30px;
+    }
+
+    .iplanay-titulo-nombre,
+    .iplanay-titulo-anio {
+        font-size: 12px;
+        letter-spacing: 0;
+    }
+
+    .custom-dinamicPanel {
+        top: 64px !important;
+    }
+}

@@ -1,0 +1,615 @@
+.iplanay-ficha {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  height: auto;
+  min-height: 0;
+  padding: 16px 16px 12px;
+  color: #2b2426;
+  font-family: "Segoe UI", Calibri, sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.iplanay-ficha h2 {
+  margin: 0 36px 2px 0;
+  color: #b01040;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.iplanay-ficha .region {
+  margin: 0 0 12px;
+  color: #6d5c62;
+  font-size: 13px;
+}
+
+.iplanay-pestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0 0 14px;
+  border-bottom: 2px solid #eadfe3;
+}
+
+.iplanay-pestanas button {
+  border: 0;
+  background: transparent;
+  color: #6d5c62;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+}
+
+.iplanay-pestanas button.activa {
+  color: #b01040;
+  box-shadow: inset 0 -2px 0 #b01040;
+}
+
+.iplanay-ficha h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #3d2a30;
+}
+
+.iplanay-ficha h3 .fa-solid {
+  width: 18px;
+  color: #b01040;
+  font-size: 14px;
+  text-align: center;
+}
+
+.iplanay-ficha .seccion {
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eadfe3;
+}
+
+.iplanay-ficha .metrica {
+  display: inline-block;
+  min-width: 128px;
+  margin: 0 8px 8px 0;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #eadfe3;
+  border-radius: 8px;
+  vertical-align: top;
+}
+
+.iplanay-ficha .metrica span {
+  display: block;
+  font-size: 11px;
+  color: #6d5c62;
+}
+
+.iplanay-ficha .metrica b {
+  font-size: 18px;
+  color: #b01040;
+}
+
+.iplanay-ficha table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+.iplanay-ficha th,
+.iplanay-ficha td {
+  padding: 4px 6px;
+  border-bottom: 1px solid #eadfe3;
+  text-align: left;
+  vertical-align: top;
+}
+
+.iplanay-ficha td.num,
+.iplanay-ficha th.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.iplanay-ficha .fuente,
+.iplanay-ficha .pista-leyenda {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #6d5c62;
+}
+
+.iplanay-ficha .prosa {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.iplanay-ficha .fuente {
+  font-size: 11px;
+  color: #8a757c;
+}
+
+.iplanay-ficha .vacio {
+  margin: 4px 0;
+  color: #8a757c;
+  font-style: italic;
+}
+
+.iplanay-ficha .pista-sexo {
+  height: 8px;
+  margin-top: 4px;
+  background: #e7a8bb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.iplanay-ficha .pista-sexo span {
+  display: block;
+  height: 100%;
+  background: #3d5a80;
+}
+
+.iplanay-ficha .barra {
+  margin: 6px 0;
+  font-size: 12px;
+}
+
+.iplanay-ficha .barra span,
+.iplanay-ficha .barra b {
+  display: inline;
+}
+
+.iplanay-ficha .barra b {
+  float: right;
+  color: #b01040;
+}
+
+.iplanay-ficha .barra i {
+  display: block;
+  clear: both;
+  height: 6px;
+  margin-top: 3px;
+  background: #b01040;
+  border-radius: 3px;
+}
+
+.iplanay-ficha .idh-comparacion {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+  margin: 8px 0 4px;
+}
+
+.iplanay-ficha .idh-comparacion.partes {
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  max-width: 420px;
+}
+
+.iplanay-ficha .idh-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.iplanay-ficha .idh-col b {
+  font-size: 14px;
+  color: #3d2a30;
+}
+
+.iplanay-ficha .idh-eje {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 148px;
+  margin: 6px 0;
+}
+
+.iplanay-ficha .idh-eje i {
+  display: block;
+  width: 36px;
+  border-radius: 8px 8px 3px 3px;
+  background: #d5dee6;
+}
+
+.iplanay-ficha .idh-col span {
+  font-size: 11px;
+  line-height: 1.25;
+  color: #3d2a30;
+}
+
+.iplanay-ficha .idh-col small {
+  margin-top: 2px;
+  font-size: 10px;
+  color: #8a757c;
+}
+
+.iplanay-ficha .idh-col.centro b,
+.iplanay-ficha .idh-col.centro span {
+  color: #b01040;
+  font-weight: 700;
+}
+
+.iplanay-ficha .idh-col.centro .idh-eje i {
+  background: #b01040;
+}
+
+.iplanay-ficha svg.piramide {
+  width: 100%;
+  height: auto;
+}
+
+.iplanay-ficha svg.piramide text {
+  font-size: 11px;
+  fill: #3d2a30;
+}
+
+.iplanay-ficha svg.piramide .hombres {
+  fill: #3d5a80;
+}
+
+.iplanay-ficha svg.piramide .mujeres {
+  fill: #b01040;
+}
+
+/* Columna izquierda, de la franja al pie, sin hueco con el mapa. */
+.dinamicPanel-detail:has(.iplanay-ficha) {
+  top: 64px !important;
+  left: 0 !important;
+  width: 640px !important;
+  max-width: min(640px, calc(100vw - 320px)) !important;
+  height: calc(100vh - 64px) !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: 4px 0 18px rgba(15, 23, 42, 0.12) !important;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailContent {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px) !important;
+  max-height: none !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  background: #f4f7fa !important;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-customDetail-title,
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-customDetail-header {
+  display: none;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose {
+  position: absolute !important;
+  top: 16px !important;
+  right: 14px !important;
+  z-index: 8;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  width: auto !important;
+  height: 32px !important;
+  margin: 0 !important;
+  padding: 0 12px 0 8px !important;
+  color: #b01040;
+  background: #fff !important;
+  border: 1px solid #e7c3d0 !important;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(176, 16, 64, 0.12);
+  cursor: pointer;
+  font-family: "Segoe UI", Calibri, sans-serif;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose::before {
+  content: "\00d7";
+  font-size: 18px;
+  line-height: 1;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose::after {
+  content: "Cerrar";
+  color: #b01040;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose:hover {
+  background: #b01040 !important;
+  color: #fff;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose:hover::before,
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose:hover::after {
+  color: #fff;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailClose .dinamicPanel-sprite {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  opacity: 0;
+  cursor: pointer;
+  background: none !important;
+}
+
+.dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailContent > * {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
+.iplanay-nav {
+  flex: 0 0 auto;
+  z-index: 2;
+  margin: 0 0 12px;
+  background: #f4f7fa;
+}
+
+.iplanay-cuerpo {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.iplanay-pie {
+  flex: 0 0 auto;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #eadfe3;
+  background: #f4f7fa;
+}
+
+.iplanay-pestanas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  position: static;
+  margin: 0;
+  padding-right: 108px;
+  background: #f4f7fa;
+}
+
+.iplanay-subpestanas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 0 2px;
+  background: #f4f7fa;
+}
+
+.iplanay-subpestanas button {
+  border: 1px solid #e7c3d0;
+  border-radius: 999px;
+  background: #fff;
+  color: #6d5c62;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.iplanay-subpestanas button.activa {
+  background: #b01040;
+  border-color: #b01040;
+  color: #fff;
+  box-shadow: none;
+}
+
+.iplanay-pestanas button {
+  padding: 10px 4px 8px;
+  text-align: center;
+}
+
+.iplanay-ficha .seccion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 10px;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+}
+
+.iplanay-ficha .seccion.cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.iplanay-ficha .seccion > :not(.metrica) {
+  grid-column: 1 / -1;
+}
+
+.iplanay-ficha .metrica {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+
+.iplanay-ficha .metrica > .fa-solid {
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f8e6ec;
+  color: #b01040;
+  font-size: 15px;
+}
+
+.iplanay-ficha .metrica > div {
+  min-width: 0;
+}
+
+.iplanay-ficha .seccion.cols-3 .metrica {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.iplanay-ficha .seccion.cols-3 .metrica > .fa-solid {
+  flex-basis: 32px;
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.iplanay-ficha .pista-sexo {
+  margin-top: 0;
+}
+
+.iplanay-ficha .iplanay-descarga {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding: 3px 9px;
+  border: 1px solid #b01040;
+  border-radius: 999px;
+  color: #b01040;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.iplanay-ficha .iplanay-descarga .fa-solid {
+  font-size: 10px;
+}
+
+.iplanay-ficha .iplanay-descarga:hover {
+  background: #b01040;
+  color: #fff;
+}
+
+.iplanay-ficha .iplanay-mapas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 8px;
+}
+
+.iplanay-ficha .iplanay-mapa {
+  border: 1px solid #b01040;
+  background: #fff;
+  color: #b01040;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.iplanay-ficha .iplanay-mapa.activa {
+  background: #b01040;
+  color: #fff;
+}
+
+#iplanay-leyenda-mapa {
+  position: fixed;
+  bottom: 140px;
+  z-index: 1200;
+  width: 230px;
+  max-width: calc(100vw - 32px);
+  background: #fff;
+  border: 1px solid #e7d5dc;
+  border-radius: 10px;
+  padding: 10px 12px 12px;
+  box-shadow: 0 8px 24px rgba(31, 41, 51, 0.14);
+  color: #1f2933;
+  font: 13px/1.35 "Segoe UI", sans-serif;
+}
+
+#iplanay-leyenda-mapa .cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+#iplanay-leyenda-mapa .cabecera strong {
+  font-size: 13px;
+}
+
+#iplanay-leyenda-mapa button {
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+#iplanay-leyenda-mapa ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+#iplanay-leyenda-mapa li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+#iplanay-leyenda-mapa i {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  flex: 0 0 18px;
+  border: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+#iplanay-leyenda-mapa i.vacio {
+  background: #f4f7fa;
+}
+
+#iplanay-leyenda-mapa .nota {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .dinamicPanel-detail:has(.iplanay-ficha) {
+    top: 128px !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    height: calc(100vh - 128px) !important;
+  }
+
+  .dinamicPanel-detail:has(.iplanay-ficha) .dinamicPanel-detailContent {
+    height: calc(100vh - 128px) !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .iplanay-ficha .seccion.cols-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,0 +1,40 @@
+# Secretos
+.env
+**/.env
+
+# Clones con su propio Git. No forman parte de este repositorio.
+proyectos/ovie/
+proyectos/mxsig/
+proyectos/iplanay/geovisor/
+
+# El mapfile de trabajo lleva la contraseña local.
+# La plantilla versionada es vector_iplanay.map.example.
+proyectos/iplanay/map/*.map
+
+# Datos y respaldos
+datos/
+*.backup
+*.dump
+*.zip
+*.7z
+*.rar
+bdback/
+
+# Cuadernillos publicados
+proyectos/iplanay/PDFs/
+
+# Copias de trabajo del visor
+**/*estable*
+**/*copia*
+**/*Copia*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

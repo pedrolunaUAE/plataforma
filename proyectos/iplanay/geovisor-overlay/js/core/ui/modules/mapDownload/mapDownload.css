@@ -1,0 +1,329 @@
+#menu_mapDownload{
+    position:absolute;
+    top:66px;
+    right:56px;
+    z-index:1900;
+
+    padding:14px;
+
+    background:rgba(255,255,255,.98);
+    backdrop-filter:blur(10px);
+
+    border:1px solid #d8e2e6;
+    border-radius:16px;
+
+    box-sizing:border-box;
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.15),
+        0 3px 8px rgba(0,0,0,.08);
+
+    animation:fadeMenu .18s ease;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+#menu_mapDownload .header{
+    position:relative;
+    width:100%;
+    height:16px;
+}
+
+#menu_mapDownload .header .label{
+    position:relative;
+    top:0;
+    left:0;
+
+    font-family:"Segoe UI",sans-serif;
+    font-size:15px;
+    font-weight:700;
+
+    color:#1f5065;
+    letter-spacing:.2px;
+}
+
+/* =====================================================
+   BOTON CERRAR
+===================================================== */
+
+#menu_mapDownload .icon_close{
+    position:absolute;
+    top:-2px;
+    right:0;
+
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:8px;
+
+    background:none !important;
+    background-image:none !important;
+
+    cursor:pointer;
+}
+
+#menu_mapDownload .icon_close::before{
+    content:"\f00d";
+
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:18px;
+
+    color:#68767c;
+}
+
+#menu_mapDownload .icon_close:hover{
+    background:#edf5f7 !important;
+}
+
+/* =====================================================
+   DIVISOR
+===================================================== */
+
+#menu_mapDownload .divisor{
+    height:1px;
+    margin:10px 0 8px;
+
+    background:#dbe5e8;
+}
+
+/* =====================================================
+   CONTENEDOR FORMATOS
+===================================================== */
+
+.content_menu_mapDownload{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:4px;
+
+    width:100%;
+}
+
+/* =====================================================
+   TARJETAS
+===================================================== */
+
+.content_menu_mapDownload .item_option{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    width:80px;
+    min-height:90px;
+
+    padding:12px;
+
+    cursor:pointer;
+
+    background:#fff;
+
+    border:1px solid #d7e1e5;
+    border-radius:14px;
+
+    box-sizing:border-box;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+}
+
+.content_menu_mapDownload .item_option:hover{
+    transform:translateY(-3px);
+
+    border-color:#9fb8c1;
+
+    box-shadow:
+        0 8px 18px rgba(31,80,101,.14);
+}
+
+.content_menu_mapDownload .reference{
+    margin-top:10px;
+
+    background:none !important;
+
+    color:#2f3f45;
+
+    font-family:"Segoe UI",sans-serif;
+    font-size:13px;
+    font-weight:600;
+
+    text-align:center;
+}
+
+.content_menu_mapDownload .item_option:hover .reference{
+    color:#1f5065;
+}
+
+/* =====================================================
+   ICONOS DE FORMATOS
+===================================================== */
+
+.template_menu_mapDownload_formats{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:56px;
+    height:56px;
+
+    background:none !important;
+}
+
+.tmmd_png,
+.tmmd_jpeg,
+.tmmd_tiff,
+.tmmd_gif,
+.tmmd_pdf{
+    background:none !important;
+}
+
+/* PNG */
+
+.tmmd_png::before{
+    content:"\f1c5";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:42px;
+    color:#198754;
+}
+
+.tmmd_png::after{
+    content:"PNG";
+
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#198754;
+}
+
+/* JPEG */
+
+.tmmd_jpeg::before{
+    content:"\f1c5";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:42px;
+    color:#2a6b86;
+}
+
+.tmmd_jpeg::after{
+    content:"JPEG";
+
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#2a6b86;
+}
+
+/* TIFF */
+
+.tmmd_tiff::before{
+    content:"\f03e";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:42px;
+    color:#7b61ff;
+}
+
+.tmmd_tiff::after{
+    content:"TIFF";
+
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#7b61ff;
+}
+
+/* GIF */
+
+.tmmd_gif::before{
+    content:"\f03e";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:42px;
+    color:#e67e22;
+}
+
+.tmmd_gif::after{
+    content:"GIF";
+
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#e67e22;
+}
+
+/* PDF */
+
+.tmmd_pdf::before{
+    content:"\f1c1";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    font-size:42px;
+    color:#d13438;
+}
+
+.tmmd_pdf::after{
+    content:"PDF";
+
+    position:absolute;
+    bottom:-18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:10px;
+    font-weight:700;
+
+    color:#d13438;
+}
+
+/* =====================================================
+   ANIMACION
+===================================================== */
+
+@keyframes fadeMenu{
+    from{
+        opacity:0;
+        transform:translateY(-8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}

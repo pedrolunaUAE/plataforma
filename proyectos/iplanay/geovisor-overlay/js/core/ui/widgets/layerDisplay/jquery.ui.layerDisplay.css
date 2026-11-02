@@ -1,0 +1,2042 @@
+/* ==========================================================================
+   LAYER DISPLAY
+   REDISEÑO COMPATIBLE CON jquery.ui.layerDisplay(2).js
+   ========================================================================== */
+
+
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+:root {
+  --ld-primary: #356b7d;
+  --ld-primary-dark: #458096;
+  --ld-primary-soft: #eaf2f4;
+
+  --ld-panel-bg: #ffffff;
+  --ld-body-bg: #f4f6f7;
+
+  --ld-text: #303b40;
+  --ld-text-soft: #6f7a80;
+
+  --ld-border: #d5dde0;
+  --ld-border-soft: #e7ecee;
+
+  --ld-hover: #eef5f6;
+
+  --ld-radius: 8px;
+  --ld-radius-small: 5px;
+}
+
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL
+
+   IMPORTANTE:
+   El contenedor real es #layerDisplay-container1.
+   No usamos width:100% ni height:100% porque provocaban
+   que el panel ocupara prácticamente todo el mapa.
+   ========================================================================== */
+
+.layerDisplay-container {
+  position: absolute !important;
+
+  top: 75px;
+  left: 85px;
+
+  bottom: 53px;
+
+  width: 338px !important;
+  min-width: 338px !important;
+
+  height: auto !important;
+
+  display: flex !important;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: var(--ld-panel-bg);
+
+  border: 1px solid #457f95;
+
+  border-radius: var(--ld-radius);
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.18),
+    0 2px 5px rgba(0, 0, 0, 0.10);
+
+  z-index: 3001;
+}
+
+
+/* ==========================================================================
+   ENCABEZADO
+   ========================================================================== */
+
+.layerDisplay-header {
+  position: relative;
+
+  height: 48px;
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 8px;
+
+  background: linear-gradient(135deg, #cb1a5c, #651e25);
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   BUSCADOR
+   ========================================================================== */
+
+.layerDisplay-header input {
+  width: 100% !important;
+
+  height: 32px;
+
+  padding:
+    0
+    70px
+    0
+    12px;
+
+  background: #ffffff;
+
+  border: none;
+
+  border-radius: 5px;
+
+  color: var(--ld-text);
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 13px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.10);
+}
+
+
+.layerDisplay-header input:focus {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+
+.layerDisplay-header input::placeholder {
+  color: #7a858a;
+}
+
+
+/* ==========================================================================
+   BOTÓN LIMPIAR
+   ========================================================================== */
+
+.layerDisplay-header .btnlayerDisplay-clear {
+  position: absolute;
+
+  right: 60px;
+  top: 45%;
+
+  width: 30px;
+  height: 30px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #617078;
+
+  font-size: 13px;
+
+  border-radius: 4px;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+
+.layerDisplay-header .btnlayerDisplay-clear:hover {
+  background-color: #e8edef;
+
+  color: #263238;
+}
+
+
+/* ==========================================================================
+   BOTÓN CERRAR
+   ========================================================================== */
+
+.layerDisplay-header .btnlayerDisplay-close {
+  position: relative;
+
+  width: 28px;
+  height: 28px;
+
+  margin-left: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+
+  color: #ffffff;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.layerDisplay-header .btnlayerDisplay-close:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+
+  transform: scale(1.05);
+}
+
+
+.fa-xmark {
+  color: #651f25 !important;
+
+  font-size: 18px;
+}
+
+
+/* ==========================================================================
+   CUERPO
+   ========================================================================== */
+
+.layerDisplay-body {
+  position: relative;
+
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  width: 100%;
+
+  padding: 8px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  background: var(--ld-body-bg);
+
+  box-sizing: border-box;
+}
+
+
+/* Contenedor real de grupos */
+
+#layerDisplay-bodyLayers {
+  width: 100%;
+
+  display: flex !important;
+  flex-direction: column;
+
+  gap: 7px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   SCROLL
+   ========================================================================== */
+
+.layerDisplay-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.layerDisplay-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.layerDisplay-body::-webkit-scrollbar-thumb {
+  background: #bdc8cc;
+
+  border-radius: 10px;
+
+  border: 2px solid var(--ld-body-bg);
+}
+
+
+.layerDisplay-body::-webkit-scrollbar-thumb:hover {
+  background: #9eafb5;
+}
+
+
+/* ==========================================================================
+   GRUPO PRINCIPAL
+   ========================================================================== */
+
+.layerDisplay-groupLayer {
+  width: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  background: #ffffff;
+
+  border: 1px solid var(--ld-border);
+
+  border-radius: var(--ld-radius);
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.layerDisplay-groupLayer:hover {
+  border-color: #b9c8cd;
+
+  box-shadow:
+    0 3px 9px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==========================================================================
+   CABECERA DEL GRUPO
+
+   Estructura real:
+   .layerDisplay-title-container
+       .layerDisplay-title
+           botón
+           .layerDisplay-groupLayer-name
+   ========================================================================== */
+
+.layerDisplay-title-container {
+  width: 100%;
+
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid var(--ld-border-soft);
+}
+
+
+.layerDisplay-title {
+  width: 100%;
+
+  min-height: 46px;
+
+  display: flex !important;
+  align-items: center;
+
+  padding: 0 10px;
+
+  box-sizing: border-box;
+
+  color: var(--ld-text);
+}
+
+
+/* ==========================================================================
+   NOMBRE DEL GRUPO
+   ========================================================================== */
+
+.layerDisplay-groupLayer-name {
+  position: relative;
+
+  flex: 1;
+
+  min-width: 0;
+
+  min-height: 46px;
+
+  display: flex !important;
+  align-items: center;
+
+  padding:
+    0
+    30px
+    0
+    4px;
+
+  color: #394348;
+
+  background: transparent !important;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.45px;
+
+  text-transform: uppercase;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+
+/* Flecha de expansión */
+
+.layerDisplay-groupLayer-name::after {
+  content: "›";
+
+  position: absolute;
+
+  right: 6px;
+  top: 50%;
+
+  transform:
+    translateY(-52%)
+    rotate(0deg);
+
+  color: var(--ld-primary);
+
+  font-size: 22px;
+
+  font-weight: 400;
+
+  transition: transform 0.2s ease;
+}
+
+
+/* Cuando está abierto */
+
+.layerDisplay-groupLayer-name[data-click-state="1"]::after {
+  transform:
+    translateY(-52%)
+    rotate(90deg);
+}
+
+
+.layerDisplay-groupLayer-name:hover {
+  color: var(--ld-primary-dark);
+}
+
+
+/* ==========================================================================
+   BOTÓN DEL GRUPO
+   ========================================================================== */
+
+.layerDisplay-btnMetadatoGroup {
+  width: 26px;
+  height: 26px;
+
+  margin-right: 5px;
+
+  flex-shrink: 0;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.layerDisplay-btnMetadatoGroup:hover {
+  background-color: var(--ld-primary-soft);
+
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   SEPARADORES PMDU / PPDUCH
+   ========================================================================== */
+
+.separadorTheme {
+  width: calc(100% - 16px);
+
+  margin:
+    8px
+    8px
+    4px
+    8px;
+
+  padding:
+    6px
+    9px;
+
+  background: #f2f5f6;
+
+  border-left: 3px solid var(--ld-primary);
+
+  border-top: 1px solid var(--ld-border-soft);
+  border-bottom: 1px solid var(--ld-border-soft);
+
+  box-sizing: border-box;
+
+  color: #68767b;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   TEMA / SUBGRUPO
+   ========================================================================== */
+
+.themeName {
+  position: relative;
+
+  width: calc(100% - 16px);
+
+  min-height: 36px;
+
+  display: flex !important;
+  align-items: center;
+
+  margin:
+    6px
+    8px
+    3px
+    8px;
+
+  padding:
+    7px
+    30px
+    7px
+    12px;
+
+  background: var(--ld-primary-soft);
+
+  border-left: 4px solid var(--ld-primary);
+
+  border-radius: 0 5px 5px 0;
+
+  box-sizing: border-box;
+
+  color: #3f5c66;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    padding-left 0.15s ease;
+}
+
+
+/* Indicador visual del tema */
+
+.themeName::after {
+  content: "›";
+
+  position: absolute;
+
+  right: 10px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--ld-primary);
+
+  font-size: 17px;
+
+  transition: transform 0.2s ease;
+}
+
+
+/* Tema visible */
+
+.themeName.visible-color::after {
+  transform:
+    translateY(-50%)
+    rotate(90deg);
+}
+
+
+.themeName:hover {
+  background: #dfecef;
+
+  padding-left: 15px;
+}
+
+
+/* Tema cerrado */
+
+.hidden-color {
+  color: #65747a;
+}
+
+
+/* Tema abierto */
+
+.visible-color {
+  color: #304f59;
+}
+
+
+/* ==========================================================================
+   FILAS DE CAPAS
+   ========================================================================== */
+
+.layerDisplay-layer,
+.layerDisplay-layer-tema {
+  width: calc(100% - 24px);
+
+  min-height: 34px;
+
+  display: flex !important;
+  align-items: center;
+
+  margin:
+    1px
+    12px;
+
+  padding:
+    3px
+    4px
+    3px
+    8px;
+
+  background: transparent;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  transition:
+    background-color 0.15s ease;
+}
+
+
+/* Hover */
+
+.layerDisplay-layer:hover,
+.layerDisplay-layer-tema:hover {
+  background-color: var(--ld-hover);
+}
+
+
+/* ==========================================================================
+   CHECKBOX
+   ========================================================================== */
+
+.layerDisplay-layer input[type="checkbox"],
+.layerDisplay-layer-tema input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+
+  margin:
+    0
+    8px
+    0
+    0;
+
+  flex: 0 0 16px;
+
+  cursor: pointer;
+
+  accent-color: var(--ld-primary);
+}
+
+
+/* ==========================================================================
+   ESPACIO CUANDO LA CAPA ES TEXTO
+   ========================================================================== */
+
+.layerDisplay-btnSpace {
+  width: 16px;
+
+  margin-right: 8px;
+
+  flex: 0 0 16px;
+}
+
+
+/* ==========================================================================
+   ETIQUETA DE LA CAPA
+
+   Este es el punto principal para la alineación:
+   la etiqueta ocupa todo el espacio disponible
+   y los botones permanecen alineados a la derecha.
+   ========================================================================== */
+
+.layerDisplay-layer label,
+.layerDisplay-layer-tema label {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: #3d474c;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 400;
+
+  line-height: 1.25;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   BOTONES DE ACCIÓN DE LAS CAPAS
+   ========================================================================== */
+
+.layerDisplay-layer button,
+.layerDisplay-layer-tema button,
+.layerDisplay-flatBtn {
+  width: 26px;
+  height: 26px;
+
+  margin-left: 3px;
+
+  padding: 0;
+
+  flex: 0 0 26px;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.layerDisplay-layer button:hover,
+.layerDisplay-layer-tema button:hover,
+.layerDisplay-flatBtn:hover {
+  background-color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   CAPAS SELECCIONADAS
+   ========================================================================== */
+
+.layerDisplay-layerSelected,
+.layerDisplay-layerSelected-2 {
+  width: 100%;
+
+  min-height: 36px;
+
+  display: flex !important;
+  align-items: center;
+
+  margin-top: 4px;
+
+  padding:
+    4px
+    7px;
+
+  background: #f1f7f8;
+
+  border: 1px solid #d4e1e5;
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+
+.layerDisplay-layerSelected label,
+.layerDisplay-layerSelected-2 label {
+  flex: 1;
+
+  min-width: 0;
+
+  margin: 0;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  font-size: 12px;
+}
+
+
+/* ==========================================================================
+   CONTROL DE TRANSPARENCIA
+   ========================================================================== */
+
+.layerDisplay-body-selected-2 .layerDisplay-transparencyContainer{
+  width: 100%;
+
+  min-height: 36px;
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 5px;
+
+  padding:
+    0
+    8px;
+
+  background: #f8fafb;
+
+  border: 1px solid var(--ld-border);
+
+  border-radius: 5px;
+
+  box-sizing: border-box;
+}
+
+
+.layerDisplay-sliderTransparency {
+  flex: 1;
+
+  margin:
+    0
+    10px;
+}
+
+
+/* ==========================================================================
+   FUENTE
+   ========================================================================== */
+
+.layerDisplay-source-label {
+  margin: 6px 10px 8px 10px;
+
+  padding: 6px 8px;
+
+  background: #f7f9fa;
+
+  border-top: 1px solid var(--ld-border-soft);
+
+  color: var(--ld-text-soft);
+
+  font-size: 10px;
+}
+
+
+/* ==========================================================================
+   MENÚS DE DESCARGA
+   ========================================================================== */
+
+.btndescarga,
+[class^="btndescarga_"] {
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 700px) {
+
+  .layerDisplay-container {
+    left: 70px;
+
+    width: 320px !important;
+    min-width: 320px !important;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .layerDisplay-container {
+    left: 10px;
+
+    width: calc(100vw - 20px) !important;
+    min-width: 0 !important;
+  }
+
+}
+
+/* ========================================================================== 
+   LAYER DISPLAY - TARJETAS Y ACORDEON MODERNO
+   Ajuste compatible con jquery.ui.layerDisplay.corregido.js
+   ========================================================================== */
+
+#layerDisplay-container1 {
+  width: 390px !important;
+  min-width: 340px !important;
+  border-radius: 12px;
+  border: 1px solid #4c6974;
+  background: #fff;
+}
+
+#layerDisplay-container1 .layerDisplay-header {
+  min-height: 58px;
+  height: 58px;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+#layerDisplay-container1 .layerDisplay-header input {
+  height: 38px;
+  padding-left: 10px;
+  padding-right: 66px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+#layerDisplay-container1 .layerDisplay-body {
+  padding: 12px;
+  background: #f7f9fa;
+}
+
+#layerDisplay-bodyLayers {
+  gap: 10px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #d6dde1;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20, 45, 55, 0.04);
+}
+
+#layerDisplay-bodyLayers .layerDisplay-title-container {
+  min-height: 58px;
+  border: 0;
+  background: #fff;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-title {
+  min-height: 58px;
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-title > .layerDisplay-btnMetadatoGroup {
+  position: relative !important;
+  float: none !important;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  margin: 0 !important;
+  border-radius: 50%;
+  background-color: #e8f3f5;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name {
+  position: relative;
+  float: none !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 58px;
+  width: auto !important;
+  display: flex !important;
+  align-items: center;
+  padding: 0 34px 0 34px !important;
+  color: #20272b;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .15px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name::before {
+  content: "›";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%) rotate(0deg);
+  color: #17242a;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform .18s ease;
+  pointer-events: none;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name::after {
+  content: none !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name[data-click-state="1"]::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupContent {
+  display: none;
+  width: 100%;
+  padding: 0 12px 12px;
+  border-top: 1px solid #edf0f2;
+  box-sizing: border-box;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer,
+#layerDisplay-bodyLayers .layerDisplay-layer-tema {
+  position: relative;
+  float: none !important;
+  clear: both;
+  width: 100% !important;
+  min-width: 0;
+  min-height: 42px;
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+  margin: 1px 0 !important;
+  padding: 5px 4px !important;
+  overflow: visible;
+  border-radius: 7px;
+  background: transparent;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer:hover,
+#layerDisplay-bodyLayers .layerDisplay-layer-tema:hover {
+  background: #f1f6f7;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer-tema {
+  width: calc(100% - 18px) !important;
+  margin-left: 18px !important;
+  padding-left: 8px !important;
+  border-left: 2px solid #d9e5e8;
+  border-radius: 0 7px 7px 0;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer > input[type="checkbox"],
+#layerDisplay-bodyLayers .layerDisplay-layer-tema > input[type="checkbox"] {
+  position: relative;
+  float: none !important;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+  accent-color: #356b7d;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-btnSpace {
+  float: none !important;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin: 0 !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer > label,
+#layerDisplay-bodyLayers .layerDisplay-layer-tema > label {
+  position: relative;
+  float: none !important;
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 3px 0 !important;
+  color: #303a3f;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-actions {
+  position: relative;
+  float: none !important;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  min-width: 30px;
+  margin-left: auto;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-actions > button {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  float: none !important;
+  flex: 0 0 30px;
+  width: 30px !important;
+  min-width: 30px;
+  height: 30px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7dfe3;
+  border-radius: 6px;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: none;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-actions > button:hover {
+  border-color: #9fb4bc;
+  background-color: #edf5f7;
+  transform: none;
+}
+
+#layerDisplay-bodyLayers .themeName {
+  position: relative;
+  float: none !important;
+  clear: both;
+  width: 100% !important;
+  min-height: 44px;
+  display: flex !important;
+  align-items: center;
+  margin: 7px 0 3px !important;
+  padding: 7px 36px 7px 42px !important;
+  border: 1px solid #e0e6e9;
+  border-left: 4px solid #3f7d91;
+  border-radius: 8px;
+  background: #f7f9fa;
+  color: #35454c;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+#layerDisplay-bodyLayers .themeName::before {
+  content: "›";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%) rotate(0deg);
+  color: #23343b;
+  font-size: 24px;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+
+#layerDisplay-bodyLayers .themeName::after {
+  content: none !important;
+}
+
+#layerDisplay-bodyLayers .themeName[data-click-state="1"]::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+#layerDisplay-bodyLayers .separadorTheme {
+  width: 100%;
+  margin: 8px 0 4px;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: #eaf1f3;
+  color: #52656d;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-source-label {
+  position: relative;
+  float: none;
+  clear: both;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: #f7f9fa;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-source-label > div {
+  position: static;
+  width: auto;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-source-label label {
+  float: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+@media (max-width: 500px) {
+  #layerDisplay-container1 {
+    left: 72px;
+    width: calc(100vw - 82px) !important;
+    min-width: 0 !important;
+  }
+
+  #layerDisplay-bodyLayers .layerDisplay-groupLayer-name {
+    font-size: 14px;
+  }
+
+  #layerDisplay-bodyLayers .layerDisplay-actions {
+    gap: 3px;
+  }
+
+  #layerDisplay-bodyLayers .layerDisplay-actions > button {
+    flex-basis: 28px;
+    width: 28px !important;
+    min-width: 28px;
+    height: 28px !important;
+  }
+}
+
+
+
+/* ========================================================================== 
+   CORRECCION V2: ICONOS, SUBGRUPOS Y DESCARGAS
+   ========================================================================== */
+
+#layerDisplay-bodyLayers .layerDisplay-themeContent {
+  display: none;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0 5px;
+  box-sizing: border-box;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-themeContent .layerDisplay-layer-tema {
+  display: flex;
+}
+
+/* No sustituir las coordenadas de los sprites heredados. */
+#layerDisplay-bodyLayers .layerDisplay-actions > button.layerDisplay-sprite {
+  background-color: #fff;
+  background-repeat: no-repeat;
+}
+
+/* Icono T para activar o desactivar textos. */
+#layerDisplay-bodyLayers .layerDisplay-btnTextIcon,
+#layerDisplay-bodyLayers .layerDisplay-btnText {
+  background-image: none !important;
+  color: #263238;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 0;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-btnTextIcon::before,
+#layerDisplay-bodyLayers .layerDisplay-btnText::before {
+  content: "T";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Icono de descarga visible aunque la hoja de sprites no cargue. */
+#layerDisplay-bodyLayers .layerDisplay-downloadToggle {
+  background-image: none !important;
+  color: #1f5065;
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", Arial, sans-serif;
+  font-size: 0;
+  font-weight: 900;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-downloadToggle::before {
+  content: "\f019";
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Icono del documento informativo. */
+#layerDisplay-bodyLayers .layerDisplay-btnMetadato:not(.layerDisplay-downloadToggle) {
+  color: #1f5065;
+}
+
+/* Menu de descargas asociado a cada capa. */
+#layerDisplay-bodyLayers [class^="btndescarga_"] {
+  display: none;
+  clear: both;
+  width: calc(100% - 18px);
+  margin: 3px 0 8px 18px;
+  padding: 7px;
+  border: 1px solid #d9e2e6;
+  border-radius: 7px;
+  background: #f7fafb;
+  box-sizing: border-box;
+}
+
+#layerDisplay-bodyLayers [class^="btndescarga_"] .dropdown-content2 {
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    padding:0;
+}
+
+
+#layerDisplay-bodyLayers [class^="btndescarga_"] .dropdown-content2 a {
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:6px 10px;
+    border-radius:6px;
+    background:#f3f7f9;
+    border:1px solid #dce5e8;
+    color:#244f60;
+    text-decoration:none;
+    font-size:12px;
+    white-space:nowrap;
+}
+
+#layerDisplay-bodyLayers [class^="btndescarga_"] .dropdown-content2 a:hover {
+    background:#e5f0f4;
+    border-color:#b7cbd4;
+}
+
+/* El tema abierto mantiene una jerarquia clara. */
+#layerDisplay-bodyLayers .themeName[data-click-state="1"] {
+  background: #eaf3f5;
+  border-color: #cbdce1;
+}
+
+
+/* ========================================================================== 
+   CORRECCION V3: VISTA COMPACTA, ICONO DE ESCALA E ICONOS DE GRUPO
+   ========================================================================== */
+
+/* Panel ligeramente mas compacto. */
+#layerDisplay-container1 {
+  width: 372px !important;
+  min-width: 330px !important;
+}
+
+#layerDisplay-container1 .layerDisplay-header {
+  min-height: 52px;
+  height: 52px;
+  padding: 0 10px;
+}
+
+#layerDisplay-container1 .layerDisplay-header input {
+  height: 34px;
+  font-size: 14px;
+}
+
+#layerDisplay-container1 .layerDisplay-body {
+  padding: 8px;
+}
+
+#layerDisplay-bodyLayers {
+  gap: 6px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-title-container,
+#layerDisplay-bodyLayers .layerDisplay-title {
+  min-height: 48px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-title {
+  gap: 6px;
+  padding: 0 10px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name {
+  min-height: 48px;
+  padding: 0 28px 0 28px !important;
+  font-size: 14px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLayer-name::before {
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  font-size: 25px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupContent {
+  padding: 0 8px 7px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer,
+#layerDisplay-bodyLayers .layerDisplay-layer-tema {
+  min-height: 34px;
+  gap: 7px;
+  margin: 0 !important;
+  padding: 3px 2px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer-tema {
+  width: calc(100% - 14px) !important;
+  margin-left: 14px !important;
+  padding-left: 6px !important;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer > input[type="checkbox"],
+#layerDisplay-bodyLayers .layerDisplay-layer-tema > input[type="checkbox"],
+#layerDisplay-bodyLayers .layerDisplay-btnSpace {
+  flex-basis: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-layer > label,
+#layerDisplay-bodyLayers .layerDisplay-layer-tema > label {
+  padding: 1px 0 !important;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-actions {
+  gap: 3px;
+  min-width: 26px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-actions > button {
+  flex-basis: 26px;
+  width: 26px !important;
+  min-width: 26px;
+  height: 26px !important;
+  border-radius: 5px;
+}
+
+#layerDisplay-bodyLayers .themeName {
+  min-height: 36px;
+  margin: 4px 0 2px !important;
+  padding: 5px 28px 5px 34px !important;
+  font-size: 12px;
+}
+
+#layerDisplay-bodyLayers .themeName::before {
+  left: 10px;
+  width: 16px;
+  height: 16px;
+  font-size: 21px;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-themeContent {
+  padding: 0 0 3px;
+}
+
+#layerDisplay-bodyLayers .separadorTheme {
+  margin: 5px 0 2px;
+  padding: 4px 7px;
+}
+
+/* Icono de escala visible, independiente de la hoja de sprites. */
+#layerDisplay-bodyLayers .layerDisplay-btnScale {
+  background-image: none !important;
+  color: #1f5065;
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", Arial, sans-serif;
+  font-size: 0;
+  font-weight: 900;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-btnScale::before {
+  content: "\f002";
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Iconos representativos por etiqueta de grupo. */
+#layerDisplay-bodyLayers .layerDisplay-groupIcon {
+  position: relative;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: #e8f3f5;
+  color: #22627a;
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#layerDisplay-bodyLayers .layerDisplay-groupLabel {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-geo::before { content: "\f5a0"; }
+#layerDisplay-bodyLayers .ld-groupIcon-nature::before { content: "\f06c"; }
+#layerDisplay-bodyLayers .ld-groupIcon-infrastructure::before { content: "\f018"; }
+#layerDisplay-bodyLayers .ld-groupIcon-people::before { content: "\f0c0"; }
+#layerDisplay-bodyLayers .ld-groupIcon-risk::before { content: "\f071"; }
+#layerDisplay-bodyLayers .ld-groupIcon-economy::before { content: "\f201"; }
+#layerDisplay-bodyLayers .ld-groupIcon-water::before { content: "\f043"; }
+#layerDisplay-bodyLayers .ld-groupIcon-health::before { content: "\f0f1"; }
+#layerDisplay-bodyLayers .ld-groupIcon-education::before { content: "\f19d"; }
+#layerDisplay-bodyLayers .ld-groupIcon-security::before { content: "\f3ed"; }
+#layerDisplay-bodyLayers .ld-groupIcon-layers::before { content: "\f5fd"; }
+
+#layerDisplay-bodyLayers .ld-groupIcon-nature {
+  background: #edf6e9;
+  color: #4d8a3b;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-infrastructure {
+  background: #e5f3f8;
+  color: #23728d;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-people {
+  background: #eee9fa;
+  color: #6750a4;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-risk {
+  background: #fff0e3;
+  color: #c45a16;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-economy {
+  background: #e9f4ed;
+  color: #35764d;
+}
+
+#layerDisplay-bodyLayers .ld-groupIcon-water {
+  background: #e6f3fa;
+  color: #216d9a;
+}
+
+@media (max-width: 500px) {
+  #layerDisplay-container1 {
+    width: calc(100vw - 80px) !important;
+  }
+
+  #layerDisplay-bodyLayers .layerDisplay-groupIcon {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+    font-size: 12px;
+  }
+}
+
+/* Ocultamiento real durante la búsqueda */
+#layerDisplay-bodyLayers .layerDisplay-hidde {
+    display: none !important;
+}
+
+.downloadMapBtn::before{
+
+    content:"\f279";
+
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+
+    color:#2a6b86;
+}
+
+.downloadSourceBtn::before{
+
+    content:"\f15c";
+
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+
+    color:#2a6b86;
+}
+
+/* ==========================
+   CURSOR EN DESCARGAS
+========================== */
+
+#layerDisplay-bodyLayers .dropdown-content2 a,
+#layerDisplay-bodyLayers .downloadMapBtn,
+#layerDisplay-bodyLayers .downloadSourceBtn,
+#layerDisplay-bodyLayers .layerDisplay-btnMetadato {
+
+    cursor: pointer !important;
+}
+
+/* icono también clicable */
+
+#layerDisplay-bodyLayers .dropdown-content2 a::before {
+
+    cursor: pointer !important;
+}
+
+/* ========================================================================== 
+   SHORTLIST MODERNO MXSIG - VERSION AISLADA Y COMPATIBLE
+   Solo afecta #layersDisplay_shortList. No modifica el panel principal.
+   ========================================================================== */
+
+#layersDisplay_shortList.layerDisplay-body-selected-2 {
+  position: absolute;
+  right: 24px;
+  width: 360px;
+  max-width: calc(100vw - 48px);
+  max-height: min(540px, calc(100vh - 120px));
+  padding: 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid #cfdadd;
+  border-radius: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 14px 34px rgba(25, 52, 62, 0.20), 0 3px 10px rgba(25, 52, 62, 0.10);
+  font-family: "Segoe UI", Arial, sans-serif;
+  z-index: 3050;
+}
+
+#layersDisplay_shortList .shortList-title {
+  display: block;
+  min-height: 30px;
+  margin: 0 38px 10px 0;
+  color: #244f60;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+#layersDisplay_shortList .flatBbtnlayerDisplay-close-s {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0;
+  border-radius: 8px;
+  color: #52646c;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .flatBbtnlayerDisplay-close-s::before {
+  content: "\f00d";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#layersDisplay_shortList .flatBbtnlayerDisplay-close-s:hover {
+  background: #eef4f6 !important;
+  color: #b42318;
+}
+
+#layersDisplay_shortList .shortList-layer-group,
+#layersDisplay_shortList .shortList-service-group,
+#layersDisplay_shortList .shortList-outlayers-group {
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 10px;
+  background: #f7f9fa;
+  border: 1px solid #dce4e7;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .shortList-outlayers-group:empty {
+  display: none;
+}
+
+#layersDisplay_shortList .tool {
+  width: 100%;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+#layersDisplay_shortList .tool > label {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: #40545d;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+#layersDisplay_shortList .layerDisplay-btnClear {
+  position: static !important;
+  float: none !important;
+  flex: 0 0 30px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #d8e2e6;
+  border-radius: 8px;
+  color: #b42318;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-btnClear::before {
+  content: "\f2ed";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#layersDisplay_shortList .layerDisplay-btnClear:hover {
+  background: #fff1f0 !important;
+  border-color: #f0b7b2;
+}
+
+#layersDisplay_shortList .layerDisplay-transparencyContainer {
+  width: 100%;
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: auto 18px minmax(90px, 1fr) 18px;
+  grid-template-rows: auto;
+  align-items: center;
+  column-gap: 8px;
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  background: #ffffff;
+  border: 1px solid #dce4e7;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-transparencyText {
+  margin: 0;
+  color: #52646c;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#layersDisplay_shortList .layerDisplay-iconCircleBlank_a,
+#layersDisplay_shortList .layerDisplay-iconCircleFill_a {
+  position: static !important;
+  float: none !important;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  background-image: none !important;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-iconCircleBlank_a::before,
+#layersDisplay_shortList .layerDisplay-iconCircleFill_a::before {
+  content: "\f111";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 12px;
+  line-height: 1;
+}
+
+#layersDisplay_shortList .layerDisplay-iconCircleBlank_a::before {
+  color: #aab8be;
+  font-weight: 400;
+}
+
+#layersDisplay_shortList .layerDisplay-iconCircleFill_a::before {
+  color: #356b7d;
+  font-weight: 900;
+}
+
+#layersDisplay_shortList .layerDisplay-sliderTransparency.ui-slider {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  background: #dce6ea;
+  border: 0;
+  border-radius: 999px;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-sliderTransparency .ui-slider-range {
+  background: #356b7d;
+  border: 0;
+  border-radius: 999px;
+}
+
+#layersDisplay_shortList .layerDisplay-sliderTransparency .ui-slider-handle {
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  margin-top: -8.5px;
+  margin-left: -8.5px;
+  background: #ffffff;
+  border: 2px solid #356b7d;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(31, 80, 101, 0.24);
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList > .shortList-layer-group > .container,
+#layersDisplay_shortList > .shortList-service-group > .container,
+#layersDisplay_shortList .shortList-outLayer-group > .container {
+  width: 100%;
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2 {
+  position: relative;
+  float: none !important;
+  clear: both;
+  width: 100%;
+  min-height: 42px;
+  display: grid !important;
+  grid-template-columns: 30px 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 5px 7px;
+  background: #ffffff;
+  border: 1px solid #dce4e7;
+  border-radius: 10px;
+  box-shadow: 0 3px 9px rgba(25, 52, 62, 0.08);
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2:hover {
+  background: #fafdfe;
+  border-color: #bfd0d6;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2 > label {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: #3d4b51;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2 > div {
+  float: none !important;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  padding-right: 0 !important;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2 button {
+  position: static !important;
+  float: none !important;
+  flex: 0 0 30px;
+  width: 30px !important;
+  min-width: 30px;
+  height: 30px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #d8e2e6;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #356b7d;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#layersDisplay_shortList .layerDisplay-layerSelected-2 button:hover {
+  background: #edf5f7 !important;
+  border-color: #9fb8c1;
+}
+
+#layersDisplay_shortList .btnCloseShortcut::before,
+#layersDisplay_shortList .outLayer_btnCloseShortcut::before {
+  content: "\f00d";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  color: #b42318;
+}
+
+#layersDisplay_shortList .btnShowShortcut.layerDisplay-iconEye_a::before,
+#layersDisplay_shortList .outLayer_btnShowShortcut.layerDisplay-iconEye_a::before {
+  content: "\f06e";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  color: #0f6cbd;
+}
+
+#layersDisplay_shortList .btnShowShortcut.layerDisplay-iconEye_d::before,
+#layersDisplay_shortList .outLayer_btnShowShortcut.layerDisplay-iconEye_d::before {
+  content: "\f070";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1;
+  color: #8a989e;
+}
+
+#layersDisplay_shortList .btnTextShortcut::before {
+  content: "\f031";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+#layersDisplay_shortList .btnTextShortcut.layerDisplay-iconText_a::before {
+  color: #0f6cbd;
+}
+
+#layersDisplay_shortList .btnTextShortcut.layerDisplay-iconText_d::before {
+  color: #8a989e;
+}
+
+#layersDisplay_shortList .layerDisplay-btnScale-selected::before {
+  content: "\f002";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  color: #356b7d;
+}
+
+#layersDisplay_shortList .layerDisplay-btnViewData::before {
+  content: "\f05a";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  color: #356b7d;
+}
+
+#layersDisplay_shortList .btnLayerDownload::before {
+  content: "\f019";
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free";
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  color: #356b7d;
+}
+
+@media (max-width: 500px) {
+  #layersDisplay_shortList.layerDisplay-body-selected-2 {
+    right: 10px;
+    width: calc(100vw - 20px);
+    max-width: none;
+  }
+
+  #layersDisplay_shortList .layerDisplay-transparencyContainer {
+    grid-template-columns: 18px minmax(90px, 1fr) 18px;
+  }
+
+  #layersDisplay_shortList .layerDisplay-transparencyText {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,112 @@
+-- Catálogo de variables temáticas y la fuente citada en el cuadernillo.
+-- La geografía (mg.entidad, mg.municipio, mg.localidad, mg.lpr) no entra aquí:
+-- esas capas vienen del respaldo de Compostela, no de los PDF.
+
+BEGIN;
+
+CREATE SCHEMA IF NOT EXISTS catalogo;
+
+DROP TABLE IF EXISTS catalogo.variable;
+
+CREATE TABLE catalogo.variable (
+    orden smallint PRIMARY KEY,
+    tema text NOT NULL,
+    tabla text NOT NULL,
+    variable text NOT NULL,
+    descripcion text NOT NULL,
+    anio text NOT NULL,
+    unidad text NOT NULL,
+    fuente text NOT NULL
+);
+
+COMMENT ON TABLE catalogo.variable IS
+    'Cada variable de sociedad, economia y gobierno con la fuente citada en el Cuadernillo Geoestadístico Municipal IPLANAY 2026.';
+
+INSERT INTO catalogo.variable (orden, tema, tabla, variable, descripcion, anio, unidad, fuente) VALUES
+(1, 'Sociedad', 'sociedad.poblacion', 'hombres', 'Hombres', '2020 y 2025', 'Personas', 'CONAPO. Proyecciones de población.'),
+(2, 'Sociedad', 'sociedad.poblacion', 'mujeres', 'Mujeres', '2020 y 2025', 'Personas', 'CONAPO. Proyecciones de población.'),
+(3, 'Sociedad', 'sociedad.poblacion', 'total', 'Población total', '2020 y 2025', 'Personas', 'CONAPO. Proyecciones de población.'),
+(4, 'Sociedad', 'sociedad.poblacion', 'densidad_hab_km2', 'Densidad de población', '2020 y 2025', 'Habitantes por km²', 'CONAPO. Proyecciones de población.'),
+(5, 'Sociedad', 'sociedad.edad', 'rango', 'Grupo de edad', '2020 o 2025', 'Grupo', 'CONAPO. Proyecciones de población. El año de la fila es el de la población total a la que suma la pirámide.'),
+(6, 'Sociedad', 'sociedad.edad', 'hombres', 'Hombres en el grupo de edad', '2020 o 2025', 'Personas', 'CONAPO. Proyecciones de población.'),
+(7, 'Sociedad', 'sociedad.edad', 'mujeres', 'Mujeres en el grupo de edad', '2020 o 2025', 'Personas', 'CONAPO. Proyecciones de población.'),
+(8, 'Sociedad', 'sociedad.etnicidad', 'grupo', 'Hablantes de lengua indígena o afrodescendientes', '2020', 'Grupo', 'INEGI. Censo de Población y Vivienda 2020.'),
+(9, 'Sociedad', 'sociedad.etnicidad', 'total', 'Personas de 3 años y más en el grupo', '2020', 'Personas', 'INEGI. Censo de Población y Vivienda 2020.'),
+(10, 'Sociedad', 'sociedad.etnicidad', 'hombres', 'Hombres de 3 años y más en el grupo', '2020', 'Personas', 'INEGI. Censo de Población y Vivienda 2020.'),
+(11, 'Sociedad', 'sociedad.etnicidad', 'mujeres', 'Mujeres de 3 años y más en el grupo', '2020', 'Personas', 'INEGI. Censo de Población y Vivienda 2020.'),
+(12, 'Sociedad', 'sociedad.idh', 'region', 'Región del cuadernillo', '2020', 'Región', 'PNUD. Plataforma de Análisis para el Desarrollo, 2020.'),
+(13, 'Sociedad', 'sociedad.idh', 'idh', 'Índice de desarrollo humano', '2020', 'Índice', 'PNUD. Plataforma de Análisis para el Desarrollo, 2020.'),
+(14, 'Sociedad', 'sociedad.idh', 'nivel', 'Nivel del índice de desarrollo humano', '2020', 'Nivel', 'PNUD. Plataforma de Análisis para el Desarrollo, 2020.'),
+(15, 'Sociedad', 'sociedad.vivienda', 'viviendas_habitadas', 'Viviendas particulares habitadas', '2020', 'Viviendas', 'INEGI. Censo de Población y Vivienda 2020.'),
+(16, 'Sociedad', 'sociedad.vivienda', 'personas_por_vivienda', 'Promedio de ocupantes por vivienda', '2020', 'Personas', 'INEGI. Censo de Población y Vivienda 2020.'),
+(17, 'Sociedad', 'sociedad.vivienda', 'pct_electricidad', 'Viviendas con energía eléctrica', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(18, 'Sociedad', 'sociedad.vivienda', 'pct_sin_electricidad', 'Viviendas sin energía eléctrica', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(19, 'Sociedad', 'sociedad.vivienda', 'pct_agua', 'Viviendas con agua potable', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(20, 'Sociedad', 'sociedad.vivienda', 'pct_sin_agua', 'Viviendas sin agua potable', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(21, 'Sociedad', 'sociedad.vivienda', 'pct_drenaje', 'Viviendas con drenaje', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(22, 'Sociedad', 'sociedad.vivienda', 'pct_sin_drenaje', 'Viviendas sin drenaje', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(23, 'Sociedad', 'sociedad.vivienda', 'pct_internet', 'Viviendas con internet', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(24, 'Sociedad', 'sociedad.vivienda', 'pct_computadora', 'Viviendas con computadora', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(25, 'Sociedad', 'sociedad.vivienda', 'pct_celular', 'Teléfono celular, en el porcentaje que publica el cuadernillo', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(26, 'Sociedad', 'sociedad.educacion', 'grado_promedio_anios', 'Grado promedio de escolaridad', '2020', 'Años', 'INEGI. Censo de Población y Vivienda 2020.'),
+(27, 'Sociedad', 'sociedad.educacion', 'tasa_alfabetizacion', 'Tasa de alfabetización', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(28, 'Sociedad', 'sociedad.educacion', 'pct_basica', 'Población con educación básica', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(29, 'Sociedad', 'sociedad.educacion', 'pct_media_superior', 'Población con educación media superior', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(30, 'Sociedad', 'sociedad.educacion', 'pct_superior', 'Población con educación superior', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(31, 'Sociedad', 'sociedad.migracion', 'pct_viv_remesas', 'Viviendas que reciben remesas', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(32, 'Sociedad', 'sociedad.migracion', 'pct_viv_emigrantes_eu', 'Viviendas con emigrantes en Estados Unidos', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(33, 'Sociedad', 'sociedad.migracion', 'pct_viv_circulares', 'Viviendas con migrantes circulares', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(34, 'Sociedad', 'sociedad.migracion', 'pct_viv_retorno', 'Viviendas con migrantes de retorno', '2020', 'Porcentaje', 'INEGI. Censo de Población y Vivienda 2020.'),
+(35, 'Sociedad', 'sociedad.migracion', 'indice_iim', 'Índice de intensidad migratoria', '2020', 'Índice', 'CONAPO. Índice de intensidad migratoria, 2020.'),
+(36, 'Sociedad', 'sociedad.migracion', 'grado_iim', 'Grado de intensidad migratoria', '2020', 'Grado', 'CONAPO. Índice de intensidad migratoria, 2020.'),
+(37, 'Sociedad', 'sociedad.migracion', 'lugar_nacional', 'Lugar en la escala nacional de intensidad migratoria', '2020', 'Posición', 'CONAPO. Índice de intensidad migratoria, 2020.'),
+(38, 'Sociedad', 'sociedad.migracion', 'remesas_usd_millones', 'Remesas recibidas desde el extranjero', '2024', 'Millones de dólares', 'Banco de México. Sistema de Información Económica.'),
+(39, 'Sociedad', 'sociedad.marginacion', 'indice', 'Índice de marginación', '2020', 'Índice', 'CONAPO. Índice de marginación, 2020.'),
+(40, 'Sociedad', 'sociedad.marginacion', 'grado', 'Grado de marginación', '2020', 'Grado', 'CONAPO. Índice de marginación, 2020.'),
+(41, 'Sociedad', 'sociedad.marginacion', 'lugar_estatal', 'Lugar estatal de marginación', '2020', 'Posición', 'CONAPO. Índice de marginación, 2020.'),
+(42, 'Sociedad', 'sociedad.marginacion', 'lugar_nacional', 'Lugar nacional de marginación', '2020', 'Posición', 'CONAPO. Índice de marginación, 2020.'),
+(43, 'Sociedad', 'sociedad.carencia', 'carencia', 'Nombre de la carencia social', '2020', 'Carencia', 'CONEVAL. Indicadores de carencias sociales, 2020.'),
+(44, 'Sociedad', 'sociedad.carencia', 'poblacion_con_carencia', 'Personas que tienen la carencia', '2020', 'Personas', 'CONEVAL. Indicadores de carencias sociales, 2020.'),
+(45, 'Sociedad', 'sociedad.carencia', 'pct_poblacion', 'Porcentaje de la población con la carencia', '2020', 'Porcentaje', 'CONEVAL. Indicadores de carencias sociales, 2020.'),
+(46, 'Economía', 'economia.empleo', 'pct_pea', 'Población económicamente activa', '2024', 'Porcentaje', 'INEGI. Indicadores Laborales para los Municipios de México, 2024.'),
+(47, 'Economía', 'economia.empleo', 'pct_ocupada', 'Población ocupada', '2024', 'Porcentaje', 'INEGI. Indicadores Laborales para los Municipios de México, 2024.'),
+(48, 'Economía', 'economia.empleo', 'pct_ocupada_informal', 'Población ocupada informal', '2024', 'Porcentaje', 'INEGI. Indicadores Laborales para los Municipios de México, 2024.'),
+(49, 'Economía', 'economia.desigualdad', 'gini', 'Coeficiente de Gini', '2020', 'Coeficiente', 'CONEVAL, 2020.'),
+(50, 'Economía', 'economia.desigualdad', 'razon_ingreso', 'Razón de ingreso', '2020', 'Razón', 'CONEVAL, 2020.'),
+(51, 'Economía', 'economia.pbt', 'sector', 'Sector económico', '2024', 'Sector', 'INEGI. Censos Económicos 2024.'),
+(52, 'Economía', 'economia.pbt', 'pbt_mdp', 'Producción bruta total', '2024', 'Millones de pesos', 'INEGI. Censos Económicos 2024.'),
+(53, 'Economía', 'economia.pbt', 'pct_sector', 'Participación del sector en la producción bruta total', '2024', 'Porcentaje', 'INEGI. Censos Económicos 2024.'),
+(54, 'Economía', 'economia.pbt', 'unidades_economicas', 'Unidades económicas del censo económico. Esta columna está vacía; las unidades cargadas son las del DENUE.', '2024', 'Unidades', 'INEGI. Censos Económicos 2024.'),
+(55, 'Economía', 'economia.agricola', 'upa_activas', 'Unidades de producción agropecuaria activas', '2022', 'Unidades', 'INEGI. Censo Agropecuario 2022.'),
+(56, 'Economía', 'economia.agricola', 'upa_cielo_abierto', 'Unidades de producción a cielo abierto', '2022', 'Unidades', 'INEGI. Censo Agropecuario 2022.'),
+(57, 'Economía', 'economia.agricola', 'superficie_sembrada_ha', 'Superficie sembrada', '2022', 'Hectáreas', 'INEGI. Censo Agropecuario 2022.'),
+(58, 'Economía', 'economia.agricola', 'superficie_cosechada_ha', 'Superficie cosechada', '2022', 'Hectáreas', 'INEGI. Censo Agropecuario 2022.'),
+(59, 'Economía', 'economia.agricola', 'produccion_ton', 'Producción agrícola total', '2022', 'Toneladas', 'INEGI. Censo Agropecuario 2022.'),
+(60, 'Economía', 'economia.ganadera', 'especie', 'Especie: bovinos, porcinos u ovinos', '2022', 'Especie', 'INEGI. Censo Agropecuario 2022.'),
+(61, 'Economía', 'economia.ganadera', 'viviendas', 'Viviendas con cría de esa especie', '2022', 'Viviendas', 'INEGI. Censo Agropecuario 2022.'),
+(62, 'Economía', 'economia.ganadera', 'cabezas', 'Cabezas de ganado. En el cuadernillo la columna se llama Total.', '2022', 'Cabezas', 'INEGI. Censo Agropecuario 2022.'),
+(63, 'Economía', 'economia.ue_tamano', 'tamano', 'Tamaño de la unidad económica', '2025', 'Tamaño', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(64, 'Economía', 'economia.ue_tamano', 'total', 'Unidades económicas del tamaño', '2025', 'Unidades', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(65, 'Economía', 'economia.ue_tamano', 'pct', 'Participación del tamaño', '2025', 'Porcentaje', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(66, 'Economía', 'economia.ue_actividad', 'actividad', 'Actividad económica de la unidad', '2025', 'Actividad', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(67, 'Economía', 'economia.ue_actividad', 'total', 'Unidades económicas de la actividad', '2025', 'Unidades', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(68, 'Economía', 'economia.ue_actividad', 'pct', 'Participación de la actividad', '2025', 'Porcentaje', 'INEGI. Directorio Estadístico Nacional de Unidades Económicas (DENUE), 2025.'),
+(69, 'Gobierno', 'gobierno.finanzas', 'autonomia_pct', 'Autonomía financiera', '2021', 'Porcentaje', 'CONEVAL. Datos Municipales, DataMun, 2021.'),
+(70, 'Gobierno', 'gobierno.finanzas', 'dependencia_aportaciones_pct', 'Dependencia de aportaciones', '2021', 'Porcentaje', 'CONEVAL. Datos Municipales, DataMun, 2021.'),
+(71, 'Gobierno', 'gobierno.finanzas', 'presupuesto_ejercido', 'Presupuesto ejercido por la administración pública municipal', '2023', 'Pesos', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(72, 'Gobierno', 'gobierno.tramite', 'tipo', 'Tipo de trámite o pago', '2023', 'Tipo', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(73, 'Gobierno', 'gobierno.tramite', 'cantidad', 'Trámites o pagos realizados', '2023', 'Trámites', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(74, 'Gobierno', 'gobierno.servicio', 'alumbrado_pct', 'Cobertura de alumbrado público', '2023', 'Porcentaje', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(75, 'Gobierno', 'gobierno.servicio', 'agua_pct', 'Cobertura de agua potable', '2023', 'Porcentaje', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(76, 'Gobierno', 'gobierno.servicio', 'drenaje_pct', 'Cobertura de drenaje y alcantarillado', '2023', 'Porcentaje', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(77, 'Gobierno', 'gobierno.delito', 'categoria', 'Categoría del delito', '2024', 'Categoría', 'INEGI. Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE), 2024.'),
+(78, 'Gobierno', 'gobierno.delito', 'cantidad', 'Delitos registrados en la categoría', '2024', 'Delitos', 'INEGI. Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE), 2024.'),
+(79, 'Gobierno', 'gobierno.seguridad', 'presupuesto_administracion', 'Presupuesto ejercido por la administración pública', '2023', 'Pesos', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(80, 'Gobierno', 'gobierno.seguridad', 'presupuesto_seguridad', 'Presupuesto ejercido en seguridad pública', '2023', 'Pesos', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(81, 'Gobierno', 'gobierno.seguridad', 'pct_seguridad', 'Participación de seguridad pública en el presupuesto ejercido', '2023', 'Porcentaje', 'INEGI. Censo Nacional de Gobiernos Municipales y Demarcaciones Territoriales de la Ciudad de México, 2023.'),
+(82, 'General', 'general.presentacion', 'toponimia', 'Toponimia del municipio', '2026', 'Texto', 'Cuadernillo geoestadístico municipal. IPLANAY, 2026.'),
+(83, 'General', 'general.presentacion', 'contexto_historico', 'Contexto histórico del municipio', '2026', 'Texto', 'Cuadernillo geoestadístico municipal. IPLANAY, 2026.'),
+(84, 'General', 'general.presentacion', 'localizacion', 'Localización del municipio', '2026', 'Texto', 'Cuadernillo geoestadístico municipal. IPLANAY, 2026.'),
+(85, 'General', 'general.presentacion', 'temperatura_precipitacion', 'Temperatura y precipitación', '2026', 'Texto', 'Cuadernillo geoestadístico municipal. IPLANAY, 2026.');
+
+COMMIT;

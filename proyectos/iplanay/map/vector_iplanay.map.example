@@ -1,0 +1,231 @@
+MAP
+    NAME "Cuadernillos_IPLANAY"
+    STATUS ON
+    SIZE 400 400
+    IMAGECOLOR 255 255 255
+    IMAGETYPE png
+    EXTENT -13345293.64051 1516510.64097 -9294742.63818 3991847.36461
+    SYMBOLSET "/opt/map/mdm60/syms/symbols.sym"
+    FONTSET "/opt/map/fonts/fonts.txt"
+    DEBUG 0
+    PROJECTION
+        "init=epsg:900913"
+    END
+    UNITS METERS
+    MAXSIZE 2200
+    WEB
+        TEMPLATE "/opt/map/mdm60/mapserv_template.html"
+        IMAGEPATH "/tmp"
+        IMAGEURL "/tmp/"
+        METADATA
+            "ows_title" "Cuadernillos geoestadisticos municipales IPLANAY"
+            "ows_onlineresource" "http://localhost/cgi-bin/mapserv?map=/opt/map/mdm60/vector_iplanay.map&"
+            "ows_srs" "EPSG:900913"
+            "wms_srs" "EPSG:900913 EPSG:4326"
+            "wms_enable_request" "GetMap GetCapabilities GetLegendGraphic"
+            "wms_feature_info_mime_type" "text/html"
+        END
+    END
+
+    LAYER
+        NAME "centidad"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, cvegeo, nomgeo, the_geom FROM mg.entidad) AS entidad USING UNIQUE gid USING SRID=900913"
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POLYGON
+        STATUS ON
+        TOLERANCE 8
+        TEMPLATE "query.html"
+        CLASS
+            NAME "Nayarit"
+            STYLE
+                WIDTH 2
+                OUTLINECOLOR 98 30 36
+            END
+        END
+    END
+
+    LAYER
+        NAME "c_selector_municipio"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, cvegeo, nomgeo, the_geom FROM mg.municipio) AS municipio USING UNIQUE gid USING SRID=900913"
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POLYGON
+        STATUS ON
+        TOLERANCE 8
+        TEMPLATE "query.html"
+        CLASS
+            NAME "Municipios"
+            STYLE
+                WIDTH 1.5
+                OUTLINECOLOR 0 0 0
+            END
+        END
+    END
+
+    LAYER
+        NAME "t_selector_municipio"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, nomgeo, the_geom FROM mg.municipio) AS municipio_nombre USING UNIQUE gid USING SRID=900913"
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POLYGON
+        STATUS ON
+        LABELITEM "nomgeo"
+        CLASS
+            NAME "Nombre del municipio"
+            LABEL
+                TYPE truetype
+                FONT arial
+                SIZE 9
+                COLOR 40 40 40
+                OUTLINECOLOR 255 255 255
+                OUTLINEWIDTH 2
+                POSITION cc
+                PARTIALS FALSE
+                WRAP " "
+            END
+        END
+    END
+
+    LAYER
+        NAME "c_selector_localidad"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, cvegeo, nomgeo, the_geom FROM mg.localidad) AS localidad USING UNIQUE gid USING SRID=900913"
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POLYGON
+        STATUS ON
+        TOLERANCE 8
+        TEMPLATE "query.html"
+        CLASS
+            NAME "Localidades urbanas"
+            STYLE
+                WIDTH 1.0
+                OUTLINECOLOR 25 31 223
+            END
+        END
+    END
+
+    LAYER
+        NAME "t_selector_localidad"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, nomgeo, the_geom FROM mg.localidad) AS localidad_nombre USING UNIQUE gid USING SRID=900913"
+        MAXSCALEDENOM 400000
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POLYGON
+        STATUS ON
+        LABELITEM "nomgeo"
+        CLASS
+            NAME "Nombre de la localidad"
+            LABEL
+                TYPE truetype
+                FONT arial
+                SIZE 8
+                COLOR 25 31 160
+                OUTLINECOLOR 255 255 255
+                OUTLINEWIDTH 2
+                POSITION cc
+                PARTIALS FALSE
+                MINFEATURESIZE 8
+            END
+        END
+    END
+
+    LAYER
+        NAME "c_selector_lpr"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, cvegeo, nomgeo, the_geom FROM mg.lpr) AS lpr USING UNIQUE gid USING SRID=900913"
+        MAXSCALEDENOM 200000
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POINT
+        STATUS ON
+        TOLERANCE 8
+        TEMPLATE "query.html"
+        CLASS
+            NAME "Localidades puntuales"
+            STYLE
+                SIZE 7
+                SYMBOL "morado"
+            END
+        END
+    END
+
+    LAYER
+        NAME "t_selector_lpr"
+        GROUP "MGE"
+        CONNECTIONTYPE postgis
+        CONNECTION "user=postgres password=CAMBIAR_ESTA_CONTRASENA dbname=iplanay host=plataforma-postgres port=5432"
+        PROCESSING "CLOSE_CONNECTION=DEFER"
+        DATA "the_geom FROM (SELECT gid, nomgeo, the_geom FROM mg.lpr) AS lpr_nombre USING UNIQUE gid USING SRID=900913"
+        MAXSCALEDENOM 80000
+        PROJECTION
+            "init=epsg:900913"
+        END
+        TYPE POINT
+        STATUS ON
+        LABELITEM "nomgeo"
+        CLASS
+            NAME "Nombre de localidad puntual"
+            LABEL
+                TYPE truetype
+                FONT arial
+                SIZE 7
+                COLOR 80 40 90
+                OUTLINECOLOR 255 255 255
+                OUTLINEWIDTH 2
+                POSITION uc
+                PARTIALS FALSE
+            END
+        END
+    END
+
+    LEGEND
+        STATUS ON
+        IMAGECOLOR 255 255 255
+        KEYSIZE 18 12
+        LABEL
+            TYPE truetype
+            FONT arial
+            SIZE 10
+            COLOR 65 75 85
+        END
+    END
+
+    OUTPUTFORMAT
+        NAME "png"
+        MIMETYPE "image/png"
+        DRIVER "GD/PNG"
+        EXTENSION "png"
+        IMAGEMODE RGBA
+        TRANSPARENT TRUE
+    END
+END

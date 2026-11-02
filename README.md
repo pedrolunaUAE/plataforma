@@ -5,14 +5,14 @@ Cada aplicacion sigue en su carpeta y en su contenedor.
 
 ## Repositorio
 
-Este Git guarda la infraestructura compartida, la clase y el proyecto IPLANAY.
-OVIE, MxSIG y el cliente del geovisor tienen su propio Git y no se versionan aqui.
+Este Git guarda la infraestructura compartida y la clase.
+OVIE, IPLANAY y MxSIG tienen su propio Git y su propio contenedor.
 
 | Carpeta | Origen |
 | --- | --- |
 | `proyectos/ovie` | https://github.com/pedrolunaUAE/OVIE |
+| `proyectos/iplanay` | https://github.com/pedrolunaUAE/iplanay |
 | `proyectos/mxsig` | https://git.inegi.org.mx/mxsig/mxsig |
-| `proyectos/iplanay/geovisor` | https://git.inegi.org.mx/mxsig/mxsig_client mas el overlay |
 
 Despues de clonar este repositorio:
 
@@ -20,13 +20,7 @@ Despues de clonar este repositorio:
 powershell -File scripts\clonar-dependencias.ps1
 ```
 
-El script clona las tres carpetas solo si aun no existen. Si el geovisor se clono en esa ejecucion, copia `proyectos/iplanay/geovisor-overlay` encima del cliente. Para volver a copiar el overlay a mano:
-
-```cmd
-powershell -File scripts\aplicar-overlay-geovisor.ps1
-```
-
-No entran al repositorio el archivo `.env`, los Excel de `datos/`, los PDF de `proyectos/iplanay/PDFs/` ni el mapfile con la contraseña. La plantilla es `proyectos/iplanay/map/vector_iplanay.map.example`. El detalle esta en `docs/datos.md`.
+El script clona las tres carpetas solo si aun no existen. El de IPLANAY, ademas, clona el cliente del mapa. No entran aqui el archivo `.env` ni los Excel de `datos/`. El detalle esta en `docs/datos.md`.
 
 ## Arranque
 
@@ -55,6 +49,13 @@ OVIE se abre en http://localhost/ovie/. Su API se levanta aparte:
 ```cmd
 cd /d D:\ws\plataforma\proyectos\ovie
 docker compose up -d
+```
+
+IPLANAY se abre en http://localhost/iplanay/. Su API se levanta aparte:
+
+```cmd
+cd /d D:\ws\plataforma\proyectos\iplanay
+powershell -File arrancar.ps1
 ```
 
 Los proyectos estan en `proyectos\ovie`, `proyectos\mxsig`, `proyectos\iplanay` y `proyectos\clase`. La clase ya no

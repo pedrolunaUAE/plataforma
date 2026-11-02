@@ -11,8 +11,8 @@ Estos archivos se quedan en la maquina de trabajo. No entran al repositorio.
 
 ## Cuadernillos
 
-Los PDF municipales estan en `proyectos/iplanay/PDFs/`. El contenedor `iplanay` los monta en `/pdfs`.
+Los PDF municipales estan en el repo de IPLANAY, en `proyectos/iplanay/PDFs/`. Su contenedor los monta en `/pdfs`.
 
 ## Mapfile
 
-`proyectos/iplanay/map/vector_iplanay.map` lleva la contraseña de Postgres y esta fuera de Git. La plantilla es `vector_iplanay.map.example`. Para usarla, copiala a `vector_iplanay.map` y sustituye `CAMBIAR_ESTA_CONTRASENA` por `POSTGRES_PASSWORD` del `.env`.
+`proyectos/iplanay/map/vector_iplanay.map` lleva la contraseña de Postgres y queda fuera del repo de IPLANAY. La plantilla es `vector_iplanay.map.example`. Para usarla, copiala a `vector_iplanay.map` y sustituye `CAMBIAR_ESTA_CONTRASENA` por `POSTGRES_PASSWORD` del `.env`.

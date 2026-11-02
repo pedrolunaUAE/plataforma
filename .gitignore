@@ -2,14 +2,10 @@
 .env
 **/.env
 
-# Clones con su propio Git. No forman parte de este repositorio.
+# Proyectos con su propio Git.
 proyectos/ovie/
 proyectos/mxsig/
-proyectos/iplanay/geovisor/
-
-# El mapfile de trabajo lleva la contraseña local.
-# La plantilla versionada es vector_iplanay.map.example.
-proyectos/iplanay/map/*.map
+proyectos/iplanay/
 
 # Datos y respaldos
 datos/
@@ -19,14 +15,6 @@ datos/
 *.7z
 *.rar
 bdback/
-
-# Cuadernillos publicados
-proyectos/iplanay/PDFs/
-
-# Copias de trabajo del visor
-**/*estable*
-**/*copia*
-**/*Copia*
 
 # Python
 __pycache__/

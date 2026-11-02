@@ -62,6 +62,8 @@ tiene contenedor: sus tablas estan en la base `base_fundamentos`.
 
 Si MxSIG va a usar el puerto 80, cambia WEB_PORT en .env.
 
+El visor de IPLANAY entra a Postgres con `iplanay_lectura`, que solo lee la base `iplanay`. La contraseña es `IPLANAY_DB_PASSWORD` en `.env`. En el primer arranque el script `postgres/init/02-iplanay-lectura.sh` crea ese usuario. Si los esquemas se cargan despues, hay que volver a ejecutar ese script dentro de `plataforma-postgres`.
+
 ## Sumar un proyecto
 
 1. Crear su base en postgres/init, del mismo modo que ovie.

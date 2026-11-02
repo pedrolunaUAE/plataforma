@@ -17,6 +17,7 @@ services:
       OVIE_DB_NAME: ${OVIE_DB_NAME}
       OVIE_DB_USER: ${OVIE_DB_USER}
       OVIE_DB_PASSWORD: ${OVIE_DB_PASSWORD}
+      IPLANAY_DB_PASSWORD: ${IPLANAY_DB_PASSWORD}
       TZ: America/Mexico_City
     ports:
       - "${POSTGRES_PORT:-5433}:5432"
@@ -59,8 +60,8 @@ services:
       IPLANAY_DB_HOST: postgres
       IPLANAY_DB_PORT: "5432"
       IPLANAY_DB_NAME: iplanay
-      IPLANAY_DB_USER: ${POSTGRES_USER}
-      IPLANAY_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      IPLANAY_DB_USER: ${IPLANAY_DB_USER:-iplanay_lectura}
+      IPLANAY_DB_PASSWORD: ${IPLANAY_DB_PASSWORD}
       IPLANAY_PORT: "8080"
       IPLANAY_PDFS: /pdfs
     volumes:

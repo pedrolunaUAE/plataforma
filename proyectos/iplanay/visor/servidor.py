@@ -4,6 +4,8 @@
 import json
 import os
 import re
+import threading
+from contextlib import contextmanager
 from decimal import Decimal
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -16,8 +18,16 @@ ROOT = Path(__file__).resolve().parent
 PREFIJO = "/iplanay"
 
 
+_cupo = threading.BoundedSemaphore(4)
+_candado = threading.Lock()
+
+
+class CupoLleno(Exception):
+    pass
+
+
 def cargar_env():
-    if os.environ.get("IPLANAY_DB_PASSWORD"):
+    if os.environ.get("IPLANAY_DB_PASSWORD") and os.environ.get("IPLANAY_DB_USER"):
         return
     ruta = ROOT.parent.parent.parent / ".env"
     if not ruta.is_file():
@@ -29,23 +39,33 @@ def cargar_env():
             continue
         clave, valor = linea.split("=", 1)
         valores[clave.strip()] = valor.strip().strip('"').strip("'")
-    os.environ.setdefault("IPLANAY_DB_PASSWORD", valores.get("POSTGRES_PASSWORD", ""))
-    os.environ.setdefault("IPLANAY_DB_USER", valores.get("POSTGRES_USER", "postgres"))
+    if valores.get("IPLANAY_DB_PASSWORD"):
+        os.environ.setdefault("IPLANAY_DB_PASSWORD", valores["IPLANAY_DB_PASSWORD"])
+    if valores.get("IPLANAY_DB_USER"):
+        os.environ.setdefault("IPLANAY_DB_USER", valores["IPLANAY_DB_USER"])
     os.environ.setdefault("IPLANAY_DB_PORT", valores.get("POSTGRES_PORT", "5432"))
     os.environ.setdefault("IPLANAY_DB_NAME", "iplanay")
 
 
+@contextmanager
 def conectar():
     cargar_env()
-    return psycopg.connect(
-        host=os.environ.get("IPLANAY_DB_HOST", "127.0.0.1"),
-        port=os.environ.get("IPLANAY_DB_PORT", "5433"),
-        dbname=os.environ.get("IPLANAY_DB_NAME", "iplanay"),
-        user=os.environ.get("IPLANAY_DB_USER", "postgres"),
-        password=os.environ.get("IPLANAY_DB_PASSWORD", ""),
-        row_factory=dict_row,
-        connect_timeout=8,
-    )
+    if not _cupo.acquire(timeout=2):
+        raise CupoLleno()
+    try:
+        with psycopg.connect(
+            host=os.environ.get("IPLANAY_DB_HOST", "127.0.0.1"),
+            port=os.environ.get("IPLANAY_DB_PORT", "5433"),
+            dbname=os.environ.get("IPLANAY_DB_NAME", "iplanay"),
+            user=os.environ.get("IPLANAY_DB_USER", "iplanay_lectura"),
+            password=os.environ.get("IPLANAY_DB_PASSWORD", ""),
+            row_factory=dict_row,
+            connect_timeout=8,
+            options="-c default_transaction_read_only=on",
+        ) as conn:
+            yield conn
+    finally:
+        _cupo.release()
 
 
 def json_default(valor):
@@ -111,6 +131,7 @@ def agrupar(filas):
 
 
 _geometria = None
+_datos = None
 
 
 def geometria_municipios():
@@ -118,6 +139,14 @@ def geometria_municipios():
     global _geometria
     if _geometria is not None:
         return _geometria
+    with _candado:
+        if _geometria is not None:
+            return _geometria
+        _geometria = cargar_geometria()
+        return _geometria
+
+
+def cargar_geometria():
     sql = """
         SELECT json_build_object(
             'type', 'FeatureCollection',
@@ -137,11 +166,21 @@ def geometria_municipios():
         with conn.cursor() as cur:
             cur.execute(sql)
             fila = cur.fetchone()
-    _geometria = fila["geojson"]
-    return _geometria
+    return fila["geojson"]
 
 
 def datos():
+    global _datos
+    if _datos is not None:
+        return _datos
+    with _candado:
+        if _datos is not None:
+            return _datos
+        _datos = cargar_datos()
+        return _datos
+
+
+def cargar_datos():
     capas = """
         SELECT json_build_object(
             'type', 'FeatureCollection',
@@ -288,8 +327,16 @@ class Visor(BaseHTTPRequestHandler):
         self.send_header("Content-Type", tipo)
         self.send_header("Content-Length", str(len(cuerpo)))
         self.send_header("Cache-Control", "no-cache")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(cuerpo)
+
+    def fallo(self, exc):
+        if isinstance(exc, CupoLleno):
+            self.enviar(503, json.dumps({"error": "servicio ocupado"}), "application/json; charset=utf-8")
+            return
+        print("%s %s" % (self.address_string(), type(exc).__name__), flush=True)
+        self.enviar(500, json.dumps({"error": "consulta no disponible"}), "application/json; charset=utf-8")
 
     def enviar_pdf(self, ruta):
         datos = ruta.read_bytes()
@@ -302,6 +349,7 @@ class Visor(BaseHTTPRequestHandler):
             "attachment; filename=\"cuadernillo.pdf\"; filename*=UTF-8''%s" % quote(nombre),
         )
         self.send_header("Cache-Control", "no-cache")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(datos)
 
@@ -318,7 +366,7 @@ class Visor(BaseHTTPRequestHandler):
             try:
                 fila = municipio_en(x, y)
             except Exception as exc:
-                self.enviar(500, json.dumps({"error": str(exc)}, ensure_ascii=False), "application/json; charset=utf-8")
+                self.fallo(exc)
                 return
             cuerpo = {
                 "cvegeo": fila["cvegeo"],
@@ -335,7 +383,7 @@ class Visor(BaseHTTPRequestHandler):
             try:
                 ruta = cuadernillo_pdf(cvegeo)
             except Exception as exc:
-                self.enviar(500, json.dumps({"error": str(exc)}, ensure_ascii=False), "application/json; charset=utf-8")
+                self.fallo(exc)
                 return
             if ruta is None:
                 self.enviar(404, json.dumps({"error": "sin cuadernillo"}), "application/json; charset=utf-8")
@@ -346,7 +394,7 @@ class Visor(BaseHTTPRequestHandler):
             try:
                 cuerpo = json.dumps(geometria_municipios(), ensure_ascii=False).encode("utf-8")
             except Exception as exc:
-                self.enviar(500, json.dumps({"error": str(exc)}, ensure_ascii=False), "application/json; charset=utf-8")
+                self.fallo(exc)
                 return
             self.enviar(200, cuerpo, "application/json; charset=utf-8")
             return
@@ -354,7 +402,7 @@ class Visor(BaseHTTPRequestHandler):
             try:
                 cuerpo = json.dumps(datos(), ensure_ascii=False, default=json_default).encode("utf-8")
             except Exception as exc:
-                self.enviar(500, json.dumps({"error": str(exc)}, ensure_ascii=False), "application/json; charset=utf-8")
+                self.fallo(exc)
                 return
             self.enviar(200, cuerpo, "application/json; charset=utf-8")
             return
@@ -366,10 +414,13 @@ class Visor(BaseHTTPRequestHandler):
             if ROOT not in destino.parents:
                 self.enviar(404, "No encontrado", "text/plain; charset=utf-8")
                 return
-        if not destino.is_file():
+        if not destino.is_file() or destino.suffix.lower() not in TIPOS:
             self.enviar(404, "No encontrado", "text/plain; charset=utf-8")
             return
-        self.enviar(200, destino.read_bytes(), TIPOS.get(destino.suffix, "application/octet-stream"))
+        if any(parte.startswith(".") for parte in destino.relative_to(ROOT).parts):
+            self.enviar(404, "No encontrado", "text/plain; charset=utf-8")
+            return
+        self.enviar(200, destino.read_bytes(), TIPOS[destino.suffix.lower()])
 
 
 def main():
